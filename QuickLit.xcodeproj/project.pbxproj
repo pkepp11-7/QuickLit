@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0A9641DD32D4CAB6175820CD /* Pods_QuickLit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E377E6957F3A86980AAAC482 /* Pods_QuickLit.framework */; };
 		0B060E3A221E73F8008F3BBD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B060E39221E73F8008F3BBD /* AppDelegate.swift */; };
-		0B060E3C221E73F8008F3BBD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B060E3B221E73F8008F3BBD /* ViewController.swift */; };
 		0B060E3F221E73F8008F3BBD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B060E3D221E73F8008F3BBD /* Main.storyboard */; };
 		0B060E42221E73F8008F3BBD /* QuickLit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0B060E40221E73F8008F3BBD /* QuickLit.xcdatamodeld */; };
 		0B060E44221E73FA008F3BBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B060E43221E73FA008F3BBD /* Assets.xcassets */; };
@@ -17,6 +16,13 @@
 		0B060E52221E73FA008F3BBD /* QuickLitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B060E51221E73FA008F3BBD /* QuickLitTests.swift */; };
 		0B060E5D221E73FA008F3BBD /* QuickLitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B060E5C221E73FA008F3BBD /* QuickLitUITests.swift */; };
 		0B060E6B221E7813008F3BBD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0B060E6A221E7813008F3BBD /* GoogleService-Info.plist */; };
+		0B8501AA2221C77700A9B85B /* CreateStory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B8501A92221C77700A9B85B /* CreateStory.storyboard */; };
+		0B8501AC2221CA3F00A9B85B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8501AB2221CA3F00A9B85B /* LoginViewController.swift */; };
+		0B8501AE2221CF7E00A9B85B /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8501AD2221CF7E00A9B85B /* CreateAccountViewController.swift */; };
+		0B8501B02221D36300A9B85B /* PublicFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8501AF2221D36300A9B85B /* PublicFunctions.swift */; };
+		0B8501B52221E1CB00A9B85B /* WriteStoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8501B42221E1CB00A9B85B /* WriteStoryTableViewController.swift */; };
+		0B8501B72221F96E00A9B85B /* SelectGenreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8501B62221F96E00A9B85B /* SelectGenreViewController.swift */; };
+		0B8501B92221FAE100A9B85B /* GenreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8501B82221FAE100A9B85B /* GenreTableViewCell.swift */; };
 		0BF1C41E221E79AF005B4185 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF1C41D221E79AF005B4185 /* GoogleService-Info.plist */; };
 		61E9ED3D2EAF8C06D82541FA /* Pods_QuickLitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C89E32ADC3B3412CB122DCE /* Pods_QuickLitTests.framework */; };
 		74E8536F8B88E7339799B5F1 /* Pods_QuickLitUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B769E9DF69131198DD0B734 /* Pods_QuickLitUITests.framework */; };
@@ -42,7 +48,6 @@
 /* Begin PBXFileReference section */
 		0B060E36221E73F8008F3BBD /* QuickLit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickLit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B060E39221E73F8008F3BBD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0B060E3B221E73F8008F3BBD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0B060E3E221E73F8008F3BBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0B060E41221E73F8008F3BBD /* QuickLit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuickLit.xcdatamodel; sourceTree = "<group>"; };
 		0B060E43221E73FA008F3BBD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -55,6 +60,13 @@
 		0B060E5C221E73FA008F3BBD /* QuickLitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickLitUITests.swift; sourceTree = "<group>"; };
 		0B060E5E221E73FA008F3BBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0B060E6A221E7813008F3BBD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0B8501A92221C77700A9B85B /* CreateStory.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateStory.storyboard; sourceTree = "<group>"; };
+		0B8501AB2221CA3F00A9B85B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		0B8501AD2221CF7E00A9B85B /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		0B8501AF2221D36300A9B85B /* PublicFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicFunctions.swift; sourceTree = "<group>"; };
+		0B8501B42221E1CB00A9B85B /* WriteStoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteStoryTableViewController.swift; sourceTree = "<group>"; };
+		0B8501B62221F96E00A9B85B /* SelectGenreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGenreViewController.swift; sourceTree = "<group>"; };
+		0B8501B82221FAE100A9B85B /* GenreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreTableViewCell.swift; sourceTree = "<group>"; };
 		0BF1C41D221E79AF005B4185 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		0DD9876CAEE3F8069680EA9F /* Pods-QuickLitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickLitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QuickLitTests/Pods-QuickLitTests.release.xcconfig"; sourceTree = "<group>"; };
 		151D8B4A3B081DA049BB4201 /* Pods-QuickLitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickLitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QuickLitTests/Pods-QuickLitTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -98,6 +110,8 @@
 		0B060E2D221E73F8008F3BBD = {
 			isa = PBXGroup;
 			children = (
+				0B8501AF2221D36300A9B85B /* PublicFunctions.swift */,
+				0B8501B12221DD6E00A9B85B /* Create Story */,
 				0B060E38221E73F8008F3BBD /* QuickLit */,
 				0B060E50221E73FA008F3BBD /* QuickLitTests */,
 				0B060E5B221E73FA008F3BBD /* QuickLitUITests */,
@@ -121,8 +135,9 @@
 			isa = PBXGroup;
 			children = (
 				0B060E39221E73F8008F3BBD /* AppDelegate.swift */,
-				0B060E3B221E73F8008F3BBD /* ViewController.swift */,
 				0B060E3D221E73F8008F3BBD /* Main.storyboard */,
+				0B8501AD2221CF7E00A9B85B /* CreateAccountViewController.swift */,
+				0B8501AB2221CA3F00A9B85B /* LoginViewController.swift */,
 				0B060E43221E73FA008F3BBD /* Assets.xcassets */,
 				0B060E45221E73FA008F3BBD /* LaunchScreen.storyboard */,
 				0B060E48221E73FA008F3BBD /* Info.plist */,
@@ -149,6 +164,17 @@
 				0B060E6A221E7813008F3BBD /* GoogleService-Info.plist */,
 			);
 			path = QuickLitUITests;
+			sourceTree = "<group>";
+		};
+		0B8501B12221DD6E00A9B85B /* Create Story */ = {
+			isa = PBXGroup;
+			children = (
+				0B8501A92221C77700A9B85B /* CreateStory.storyboard */,
+				0B8501B82221FAE100A9B85B /* GenreTableViewCell.swift */,
+				0B8501B62221F96E00A9B85B /* SelectGenreViewController.swift */,
+				0B8501B42221E1CB00A9B85B /* WriteStoryTableViewController.swift */,
+			);
+			path = "Create Story";
 			sourceTree = "<group>";
 		};
 		37BB685131300BD4C1439B57 /* Frameworks */ = {
@@ -286,6 +312,7 @@
 				0BF1C41E221E79AF005B4185 /* GoogleService-Info.plist in Resources */,
 				0B060E44221E73FA008F3BBD /* Assets.xcassets in Resources */,
 				0B060E3F221E73F8008F3BBD /* Main.storyboard in Resources */,
+				0B8501AA2221C77700A9B85B /* CreateStory.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,9 +419,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B060E3C221E73F8008F3BBD /* ViewController.swift in Sources */,
+				0B8501AE2221CF7E00A9B85B /* CreateAccountViewController.swift in Sources */,
+				0B8501B72221F96E00A9B85B /* SelectGenreViewController.swift in Sources */,
+				0B8501B52221E1CB00A9B85B /* WriteStoryTableViewController.swift in Sources */,
+				0B8501AC2221CA3F00A9B85B /* LoginViewController.swift in Sources */,
 				0B060E42221E73F8008F3BBD /* QuickLit.xcdatamodeld in Sources */,
 				0B060E3A221E73F8008F3BBD /* AppDelegate.swift in Sources */,
+				0B8501B02221D36300A9B85B /* PublicFunctions.swift in Sources */,
+				0B8501B92221FAE100A9B85B /* GenreTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,7 +606,10 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = QuickLit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.QuickLit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -591,7 +626,10 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = QuickLit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.QuickLit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -608,7 +646,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S4Q5XNTY23;
 				INFOPLIST_FILE = QuickLitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = Angel.QuickLitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -626,7 +668,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S4Q5XNTY23;
 				INFOPLIST_FILE = QuickLitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = Angel.QuickLitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -643,7 +689,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S4Q5XNTY23;
 				INFOPLIST_FILE = QuickLitUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = Angel.QuickLitUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -660,7 +710,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S4Q5XNTY23;
 				INFOPLIST_FILE = QuickLitUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = Angel.QuickLitUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
