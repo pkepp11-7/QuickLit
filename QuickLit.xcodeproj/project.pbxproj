@@ -18,6 +18,9 @@
 		0B060E5D221E73FA008F3BBD /* QuickLitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B060E5C221E73FA008F3BBD /* QuickLitUITests.swift */; };
 		0B060E6B221E7813008F3BBD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0B060E6A221E7813008F3BBD /* GoogleService-Info.plist */; };
 		0BF1C41E221E79AF005B4185 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF1C41D221E79AF005B4185 /* GoogleService-Info.plist */; };
+		3EEECA2D2221CA3000AEA48F /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EEECA2C2221CA3000AEA48F /* Profile.storyboard */; };
+		3EEECA2F2221CED600AEA48F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEECA2E2221CED600AEA48F /* ProfileViewController.swift */; };
+		3EEECA312221E8FE00AEA48F /* FavoritesSmallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEECA302221E8FE00AEA48F /* FavoritesSmallCell.swift */; };
 		61E9ED3D2EAF8C06D82541FA /* Pods_QuickLitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C89E32ADC3B3412CB122DCE /* Pods_QuickLitTests.framework */; };
 		74E8536F8B88E7339799B5F1 /* Pods_QuickLitUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B769E9DF69131198DD0B734 /* Pods_QuickLitUITests.framework */; };
 /* End PBXBuildFile section */
@@ -58,6 +61,9 @@
 		0BF1C41D221E79AF005B4185 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		0DD9876CAEE3F8069680EA9F /* Pods-QuickLitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickLitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QuickLitTests/Pods-QuickLitTests.release.xcconfig"; sourceTree = "<group>"; };
 		151D8B4A3B081DA049BB4201 /* Pods-QuickLitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickLitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QuickLitTests/Pods-QuickLitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		3EEECA2C2221CA3000AEA48F /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		3EEECA2E2221CED600AEA48F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		3EEECA302221E8FE00AEA48F /* FavoritesSmallCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesSmallCell.swift; sourceTree = "<group>"; };
 		4C89E32ADC3B3412CB122DCE /* Pods_QuickLitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickLitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B769E9DF69131198DD0B734 /* Pods_QuickLitUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickLitUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81BCD38639971C47DBAC3D58 /* Pods-QuickLit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickLit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QuickLit/Pods-QuickLit.debug.xcconfig"; sourceTree = "<group>"; };
@@ -123,11 +129,14 @@
 				0B060E39221E73F8008F3BBD /* AppDelegate.swift */,
 				0B060E3B221E73F8008F3BBD /* ViewController.swift */,
 				0B060E3D221E73F8008F3BBD /* Main.storyboard */,
+				3EEECA2C2221CA3000AEA48F /* Profile.storyboard */,
 				0B060E43221E73FA008F3BBD /* Assets.xcassets */,
 				0B060E45221E73FA008F3BBD /* LaunchScreen.storyboard */,
 				0B060E48221E73FA008F3BBD /* Info.plist */,
 				0B060E40221E73F8008F3BBD /* QuickLit.xcdatamodeld */,
 				0BF1C41D221E79AF005B4185 /* GoogleService-Info.plist */,
+				3EEECA2E2221CED600AEA48F /* ProfileViewController.swift */,
+				3EEECA302221E8FE00AEA48F /* FavoritesSmallCell.swift */,
 			);
 			path = QuickLit;
 			sourceTree = "<group>";
@@ -284,6 +293,7 @@
 			files = (
 				0B060E47221E73FA008F3BBD /* LaunchScreen.storyboard in Resources */,
 				0BF1C41E221E79AF005B4185 /* GoogleService-Info.plist in Resources */,
+				3EEECA2D2221CA3000AEA48F /* Profile.storyboard in Resources */,
 				0B060E44221E73FA008F3BBD /* Assets.xcassets in Resources */,
 				0B060E3F221E73F8008F3BBD /* Main.storyboard in Resources */,
 			);
@@ -367,7 +377,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-QuickLit/Pods-QuickLit-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-QuickLit/Pods-QuickLit-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
@@ -382,7 +392,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-QuickLit/Pods-QuickLit-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QuickLit/Pods-QuickLit-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -394,7 +404,9 @@
 			files = (
 				0B060E3C221E73F8008F3BBD /* ViewController.swift in Sources */,
 				0B060E42221E73F8008F3BBD /* QuickLit.xcdatamodeld in Sources */,
+				3EEECA2F2221CED600AEA48F /* ProfileViewController.swift in Sources */,
 				0B060E3A221E73F8008F3BBD /* AppDelegate.swift in Sources */,
+				3EEECA312221E8FE00AEA48F /* FavoritesSmallCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,7 +586,10 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = QuickLit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.QuickLit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -591,7 +606,10 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = QuickLit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.QuickLit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -608,7 +626,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S4Q5XNTY23;
 				INFOPLIST_FILE = QuickLitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = Angel.QuickLitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -626,7 +648,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S4Q5XNTY23;
 				INFOPLIST_FILE = QuickLitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = Angel.QuickLitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -643,7 +669,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S4Q5XNTY23;
 				INFOPLIST_FILE = QuickLitUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = Angel.QuickLitUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -660,7 +690,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S4Q5XNTY23;
 				INFOPLIST_FILE = QuickLitUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = Angel.QuickLitUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
