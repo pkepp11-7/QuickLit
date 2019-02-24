@@ -11,7 +11,6 @@ import UIKit
 class GenreTableViewCell: UITableViewCell {
 
     @IBOutlet weak var genre_label: UILabel!
-    @IBOutlet weak var post_count_label: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

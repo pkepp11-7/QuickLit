@@ -12,6 +12,8 @@ import Firebase
 
 class WriteStoryTableViewController: UITableViewController, UITextFieldDelegate, UITextViewDelegate, selectGenreProtocol {
     
+    var completeFieldsAlert: UIAlertController?
+    var publishedAlert: UIAlertController?
 
     @IBOutlet weak var publish_button: UIBarButtonItem!
     @IBOutlet weak var story_textview: UITextView!
@@ -24,6 +26,12 @@ class WriteStoryTableViewController: UITableViewController, UITextFieldDelegate,
         super.viewDidLoad()
 
         firebaseRef = Database.database().reference()
+        
+        completeFieldsAlert = UIAlertController(title: "Complete all fields before publishing", message: "", preferredStyle: .alert)
+        completeFieldsAlert!.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "done action"), style: .default, handler: nil))
+        
+        publishedAlert = UIAlertController(title: "Published!", message: "", preferredStyle: .alert)
+        publishedAlert?.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "done action"), style: .default, handler: nil))
     }
     
     func didSelectGenre(genre: String){
@@ -62,9 +70,11 @@ class WriteStoryTableViewController: UITableViewController, UITextFieldDelegate,
             story_textview.text = ""
             tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.textLabel!.text = "None"
             
+            self.present(self.publishedAlert!, animated: true)
+            
         }
         else{
-            print("complete all fields before publishing")
+            self.present(self.completeFieldsAlert!, animated: true)
         }
     }
     

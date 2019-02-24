@@ -49,7 +49,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
                     let fbNewUser = self.firebaseRef?.child("Users").child((Auth.auth().currentUser?.uid)!)
                     fbNewUser?.child("username").setValue(self.username_textfield.text)
                     fbNewUser?.child("creation_date").setValue(firebaseFriendlyDate)
-                    
+                    fbNewUser?.child("likes").setValue(0)
                   
                     Auth.auth().signIn(withEmail: self.email_textfield.text!, password: self.password_textfield.text!) {
                         (user, error) in

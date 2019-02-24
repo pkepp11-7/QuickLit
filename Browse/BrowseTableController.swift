@@ -26,10 +26,11 @@ class BrowseTableController: UITableViewController {
         firebaseRef = Database.database().reference()
         
         getGenreStories()
-        let backBtn = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(backToGenre))
-        self.navigationItem.leftBarButtonItem = backBtn
-        self.navigationItem.title = selectedGenre
         
+        self.navigationController!.navigationBar.topItem?.title = "Back"
+ 
+        self.navigationItem.title = selectedGenre
+ 
     }
 
     // MARK: - Table view data source
@@ -53,10 +54,10 @@ class BrowseTableController: UITableViewController {
         cell.genre_label.text = genreStories[indexPath.row].genre
         cell.title_label.text = genreStories[indexPath.row].title
         if(genreStories[indexPath.row].likes != nil){
-            cell.likes_label.text = "\((genreStories[indexPath.row].likes)!)"
+            cell.likes_label.text = "\((genreStories[indexPath.row].likes)!)\nLikes"
         }
         else{
-            cell.likes_label.text = "0"
+            cell.likes_label.text = "0\nLikes"
         }
         
         let components = genreStories[indexPath.row].story.components(separatedBy: .whitespacesAndNewlines)
@@ -210,7 +211,7 @@ class BrowseTableController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 110
+        return 130
     }
     
     override func tableView(_ tableView: UITableView,

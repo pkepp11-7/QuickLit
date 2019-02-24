@@ -9,7 +9,13 @@
 import UIKit
 import Firebase
 
-class AllPostsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class AllPostsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, saveWasTappedDelegate {
+    func saveStoryWasTapped(cell: StoryTableViewCell) {
+        if let indexPath = all_posts_tableview.indexPath(for: cell){
+        firebaseRef?.child("Users").child((Auth.auth().currentUser?.uid)!).child("library").child(stories[indexPath.row].database_key).setValue(stories[indexPath.row].title)
+        }
+    }
+    
     
     var refreshControl = UIRefreshControl()
     
@@ -153,7 +159,7 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 110
+        return 130
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -165,18 +171,21 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
         performSegue(withIdentifier: "readStorySegue", sender: self)
     }
     
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "storyCell", for: indexPath) as! StoryTableViewCell
+        cell.delegate = self
         
         currentRow = indexPath.row
         
         cell.genre_label.text = stories[indexPath.row].genre
         cell.title_label.text = stories[indexPath.row].title
         if(stories[indexPath.row].likes != nil){
-            cell.likes_label.text = "\((stories[indexPath.row].likes)!)"
+            cell.likes_label.text = "\((stories[indexPath.row].likes)!)\nLikes"
         }
         else{
-            cell.likes_label.text = "0"
+            cell.likes_label.text = "0\nLikes"
         }
         
         let components = stories[indexPath.row].story.components(separatedBy: .whitespacesAndNewlines)
@@ -195,7 +204,7 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
         
         checkUserName(completion: { foundAllBoards in
             if(foundAllBoards){
-                cell.author_label.text = self.foundAuthor
+                cell.author_label.text = "By: \(self.foundAuthor)"
             }
         })
         
