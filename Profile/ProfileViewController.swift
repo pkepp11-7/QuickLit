@@ -80,6 +80,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         favoritesTable.reloadData()
     }
 
+    @IBAction func morePressed(_ sender: Any) {
+        performSegue(withIdentifier: "toLibraryTable", sender: self)
+    }
     
     // MARK: - Navigation
 
@@ -89,8 +92,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Pass the selected object to the new view controller.
         if(segue.identifier == "toStoriesList") {
             let storiesListVC = segue.destination as! ProfileStoryTableController
-            print(myStats.userPosts)
+            //print(myStats.userPosts)
             storiesListVC.keyTitlePairs = myStats.userPosts
+        }
+        
+        if(segue.identifier == "toLibraryTable") {
+            let libraryTableVc = segue.destination as! LibraryTableViewController
+            libraryTableVc.libraryKeys = myLibrary.libraryKeys
         }
         
     }
