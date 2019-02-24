@@ -13,15 +13,17 @@ class BrowseTableController: UITableViewController {
     
     var selectedGenre: String = ""
     var genreStories = [story]()
+    
+    var currentRow = -1
+    var foundAuthor = ""
+    
+    var firebaseRef: DatabaseReference?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        firebaseRef = Database.database().reference()
+        
         getGenreStories()
         let backBtn = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(backToGenre))
         self.navigationItem.leftBarButtonItem = backBtn
@@ -43,12 +45,61 @@ class BrowseTableController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "browseCell", for: indexPath) as! BrowseCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "storyCell", for: indexPath) as! StoryTableViewCell
 
-        // Configure the cell...
-        cell.titleLabel.text = genreStories[indexPath.row].title
-        cell.authorLabel.text = genreStories[indexPath.row].author
+        currentRow = indexPath.row
+        
+        cell.genre_label.text = genreStories[indexPath.row].genre
+        cell.title_label.text = genreStories[indexPath.row].title
+        if(genreStories[indexPath.row].likes != nil){
+            cell.likes_label.text = "\((genreStories[indexPath.row].likes)!)"
+        }
+        else{
+            cell.likes_label.text = "0"
+        }
+        
+        let components = genreStories[indexPath.row].story.components(separatedBy: .whitespacesAndNewlines)
+        let words = components.filter { !$0.isEmpty }
+        
+        if(words.count < 3000){
+            cell.length_label.text = "short"
+        }
+        else if(words.count > 3000 && words.count < 6000){
+            cell.length_label.text = "medium"
+        }
+        else{
+            cell.length_label.text = "long"
+        }
+        
+        
+        checkUserName(completion: { foundAllBoards in
+            if(foundAllBoards){
+                cell.author_label.text = self.foundAuthor
+            }
+        })
+        
+        self.foundAuthor = ""
         return cell
+    }
+    
+    func checkUserName(completion: @escaping (_ foundUserName: Bool) -> Void){
+        let postersPath = firebaseRef?.child("Users").child(genreStories[currentRow].author).child("username")
+        postersPath?.observe(.value, with: { snapshot in
+            if(snapshot.value is NSNull) {
+            } else {
+                
+                self.foundAuthor = snapshot.value as! String
+                
+                
+                if(self.foundAuthor == ""){
+                    completion(false)
+                }
+                else{
+                    completion(true)
+                }
+            }
+        })
+        
     }
     
     @objc func backToGenre() {
@@ -109,7 +160,7 @@ class BrowseTableController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 140
+        return 110
     }
 
     /*

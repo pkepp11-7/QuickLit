@@ -48,6 +48,15 @@ class WriteStoryTableViewController: UITableViewController, UITextFieldDelegate,
             fbNewPost?.child("story").setValue(story_textview.text)
             fbNewPost?.child("date_published").setValue(firebaseFriendlyDate)
             
+            let newPostKey = fbNewPost?.key
+            
+            
+            
+            let fbUserPosts = self.firebaseRef?.child("Users").child((Auth.auth().currentUser?.uid)!).child("posts")
+            
+            fbUserPosts?.child(newPostKey!).setValue(title_textfield.text)
+            
+            
             pickedGenre = "None"
             title_textfield.text = ""
             story_textview.text = ""
