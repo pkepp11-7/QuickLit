@@ -15,6 +15,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     var myStats: ProfileStats = ProfileStats()
     var myLibrary: ProfileStats = ProfileStats()
     
+    var refreshControl = UIRefreshControl()
+    
     @IBOutlet weak var favoritesTable: UITableView!
     
     
@@ -41,6 +43,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 print(error.localizedDescription)
             }
     }
+    
+    
+    @IBOutlet weak var profileContent: UIScrollView!
+   
+    
+    
     
     
     @IBAction func storiesCounterPressed(_ sender: UIButton) {
@@ -83,8 +91,21 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         favoritesTable.delegate = self
         favoritesTable.dataSource = self
         favoritesTable.tableFooterView = UIView(frame: .zero)
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to Refresh")
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        profileContent.addSubview(refreshControl)
     }
     
+    @objc func refresh(sender: AnyObject) {
+        print("refresh started")
+        myLibrary.libraryKeys = []
+        myLibrary.libraryPosts = []
+        myLibrary.getLibrary()
+        myStats.userPosts = [:]
+        myStats.getStats()
+        refreshControl.endRefreshing()
+        
+    }
     
     
     func updateLibrary() {
