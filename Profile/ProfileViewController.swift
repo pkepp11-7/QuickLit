@@ -35,6 +35,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Do any additional setup after loading the view.
         favoritesTable.delegate = self
         favoritesTable.dataSource = self
+        favoritesTable.tableFooterView = UIView(frame: .zero)
     }
     
 

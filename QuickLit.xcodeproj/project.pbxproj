@@ -126,6 +126,7 @@
 		0B060E2D221E73F8008F3BBD = {
 			isa = PBXGroup;
 			children = (
+				3E2CA4CD22221FEB00537981 /* Profile */,
 				0BB2B5B6222209AF00E86449 /* Browse */,
 				0B8501AF2221D36300A9B85B /* PublicFunctions.swift */,
 				0B8501B12221DD6E00A9B85B /* Create Story */,
@@ -156,14 +157,11 @@
 				0B060E3D221E73F8008F3BBD /* Main.storyboard */,
 				0B8501AD2221CF7E00A9B85B /* CreateAccountViewController.swift */,
 				0B8501AB2221CA3F00A9B85B /* LoginViewController.swift */,
-				3EEECA2C2221CA3000AEA48F /* Profile.storyboard */,
 				0B060E43221E73FA008F3BBD /* Assets.xcassets */,
 				0B060E45221E73FA008F3BBD /* LaunchScreen.storyboard */,
 				0B060E48221E73FA008F3BBD /* Info.plist */,
 				0B060E40221E73F8008F3BBD /* QuickLit.xcdatamodeld */,
 				0BF1C41D221E79AF005B4185 /* GoogleService-Info.plist */,
-				3EEECA2E2221CED600AEA48F /* ProfileViewController.swift */,
-				3EEECA302221E8FE00AEA48F /* FavoritesSmallCell.swift */,
 			);
 			path = QuickLit;
 			sourceTree = "<group>";
@@ -225,6 +223,16 @@
 				5B769E9DF69131198DD0B734 /* Pods_QuickLitUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3E2CA4CD22221FEB00537981 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				3EEECA2C2221CA3000AEA48F /* Profile.storyboard */,
+				3EEECA2E2221CED600AEA48F /* ProfileViewController.swift */,
+				3EEECA302221E8FE00AEA48F /* FavoritesSmallCell.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		D24E051C855605DE3B759798 /* Pods */ = {

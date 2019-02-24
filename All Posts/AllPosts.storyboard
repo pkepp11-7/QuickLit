@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xFJ-XS-16E">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XQH-As-gL2">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,12 +10,43 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Posts-->
+        <scene sceneID="0WF-S9-DpR">
+            <objects>
+                <viewController id="XQH-As-gL2" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="izT-ax-O3i">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lqd-4o-gG6">
+                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                                <connections>
+                                    <segue destination="xFJ-XS-16E" kind="embed" id="gMS-hk-61t"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="lqd-4o-gG6" firstAttribute="leading" secondItem="Pji-xh-1yQ" secondAttribute="leading" id="7QU-Tj-ODp"/>
+                            <constraint firstItem="Pji-xh-1yQ" firstAttribute="trailing" secondItem="lqd-4o-gG6" secondAttribute="trailing" id="Nst-ON-p2E"/>
+                            <constraint firstItem="lqd-4o-gG6" firstAttribute="top" secondItem="Pji-xh-1yQ" secondAttribute="top" id="nEt-vO-FwS"/>
+                            <constraint firstItem="Pji-xh-1yQ" firstAttribute="bottom" secondItem="lqd-4o-gG6" secondAttribute="bottom" id="qHG-S1-HrM"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Pji-xh-1yQ"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Posts" id="Qwn-gh-7ph"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9CK-zJ-aih" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-534" y="100"/>
+        </scene>
         <!--All Posts View Controller-->
         <scene sceneID="5Og-g0-o2E">
             <objects>
                 <viewController id="xFJ-XS-16E" customClass="AllPostsViewController" customModule="QuickLit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WQR-RE-PbB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="598"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FWO-Fl-wc7">
