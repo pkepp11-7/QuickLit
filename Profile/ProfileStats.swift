@@ -11,6 +11,7 @@ import Firebase
 
 protocol StatsDelegate {
     func update()
+    func updateLibrary()
 }
 
 class ProfileStats {
@@ -21,6 +22,7 @@ class ProfileStats {
     var followingCount: Int = 0
     var followerCount: Int = 0
     var userPosts: [String: String] = [:]
+    var libraryPosts: [String] = []
     var delegate: StatsDelegate?
     
     func getStats() {
@@ -44,4 +46,21 @@ class ProfileStats {
             self.delegate?.update()
         })
     }
+    
+    func getLibrary() {
+        let firebaseRef: DatabaseReference? = Database.database().reference()
+        let userid = Auth.auth().currentUser!.uid
+        let idPath = firebaseRef?.child("Users").child(userid)
+        idPath?.observeSingleEvent(of: .value, with: { snapshot in
+            if snapshot.childSnapshot(forPath: "library").exists() {
+                let postSnapshot = snapshot.childSnapshot(forPath: "library")
+                for posts in postSnapshot.children {
+                    let postSnap = posts as! DataSnapshot
+                    self.libraryPosts.append(postSnap.value as! String)
+                }
+            }
+            self.delegate?.updateLibrary()
+        })
+    }
+    
 }
