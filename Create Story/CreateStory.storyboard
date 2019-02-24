@@ -167,6 +167,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YxS-Mw-B4r"/>
                     </view>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="close_button" destination="h7i-RE-tMA" id="fze-xB-zNC"/>
                         <outlet property="genre_tableview" destination="GaD-HM-jvY" id="PC7-wJ-nKm"/>
