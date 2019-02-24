@@ -17,6 +17,8 @@ class story {
     var story: String = ""
     var title: String = ""
     var database_key: String = ""
+    var likes: Int?
+    var comments: Array<comment>?
     
     
     init(author: String, date_published: String, genre: String, story: String, title: String, database_key: String){

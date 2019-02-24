@@ -28,6 +28,10 @@
 		0BB2B5BC22220D6400E86449 /* AllPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB2B5BB22220D6400E86449 /* AllPostsViewController.swift */; };
 		0BB2B5C022220F9B00E86449 /* stories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB2B5BF22220F9B00E86449 /* stories.swift */; };
 		0BB2B5C22222147B00E86449 /* StoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB2B5C12222147B00E86449 /* StoryTableViewCell.swift */; };
+		0BB2B5C422222E8F00E86449 /* ReadStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB2B5C322222E8F00E86449 /* ReadStoryViewController.swift */; };
+		0BB2B5C62222337F00E86449 /* CommentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB2B5C52222337F00E86449 /* CommentCollectionViewCell.swift */; };
+		0BB2B5C822223D5600E86449 /* CreateCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB2B5C722223D5600E86449 /* CreateCommentViewController.swift */; };
+		0BB2B5CA22225B5A00E86449 /* comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB2B5C922225B5A00E86449 /* comments.swift */; };
 		0BF1C41E221E79AF005B4185 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF1C41D221E79AF005B4185 /* GoogleService-Info.plist */; };
 		3EEECA2D2221CA3000AEA48F /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EEECA2C2221CA3000AEA48F /* Profile.storyboard */; };
 		3EEECA2F2221CED600AEA48F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEECA2E2221CED600AEA48F /* ProfileViewController.swift */; };
@@ -80,6 +84,10 @@
 		0BB2B5BB22220D6400E86449 /* AllPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPostsViewController.swift; sourceTree = "<group>"; };
 		0BB2B5BF22220F9B00E86449 /* stories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stories.swift; sourceTree = "<group>"; };
 		0BB2B5C12222147B00E86449 /* StoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryTableViewCell.swift; sourceTree = "<group>"; };
+		0BB2B5C322222E8F00E86449 /* ReadStoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadStoryViewController.swift; sourceTree = "<group>"; };
+		0BB2B5C52222337F00E86449 /* CommentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCollectionViewCell.swift; sourceTree = "<group>"; };
+		0BB2B5C722223D5600E86449 /* CreateCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCommentViewController.swift; sourceTree = "<group>"; };
+		0BB2B5C922225B5A00E86449 /* comments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = comments.swift; sourceTree = "<group>"; };
 		0BF1C41D221E79AF005B4185 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		0DD9876CAEE3F8069680EA9F /* Pods-QuickLitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickLitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QuickLitTests/Pods-QuickLitTests.release.xcconfig"; sourceTree = "<group>"; };
 		151D8B4A3B081DA049BB4201 /* Pods-QuickLitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickLitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QuickLitTests/Pods-QuickLitTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -202,9 +210,13 @@
 			isa = PBXGroup;
 			children = (
 				0BB2B5B42222098100E86449 /* AllPosts.storyboard */,
+				0BB2B5C722223D5600E86449 /* CreateCommentViewController.swift */,
+				0BB2B5C52222337F00E86449 /* CommentCollectionViewCell.swift */,
+				0BB2B5C322222E8F00E86449 /* ReadStoryViewController.swift */,
 				0BB2B5BB22220D6400E86449 /* AllPostsViewController.swift */,
 				0BB2B5BF22220F9B00E86449 /* stories.swift */,
 				0BB2B5C12222147B00E86449 /* StoryTableViewCell.swift */,
+				0BB2B5C922225B5A00E86449 /* comments.swift */,
 			);
 			path = "All Posts";
 			sourceTree = "<group>";
@@ -464,10 +476,14 @@
 			files = (
 				0B8501AE2221CF7E00A9B85B /* CreateAccountViewController.swift in Sources */,
 				0B8501B72221F96E00A9B85B /* SelectGenreViewController.swift in Sources */,
+				0BB2B5CA22225B5A00E86449 /* comments.swift in Sources */,
 				0B8501B52221E1CB00A9B85B /* WriteStoryTableViewController.swift in Sources */,
 				0B8501AC2221CA3F00A9B85B /* LoginViewController.swift in Sources */,
 				0B060E42221E73F8008F3BBD /* QuickLit.xcdatamodeld in Sources */,
 				0BB2B5C022220F9B00E86449 /* stories.swift in Sources */,
+				0BB2B5C822223D5600E86449 /* CreateCommentViewController.swift in Sources */,
+				0BB2B5C422222E8F00E86449 /* ReadStoryViewController.swift in Sources */,
+				0BB2B5C62222337F00E86449 /* CommentCollectionViewCell.swift in Sources */,
 				3EEECA2F2221CED600AEA48F /* ProfileViewController.swift in Sources */,
 				0BB2B5BC22220D6400E86449 /* AllPostsViewController.swift in Sources */,
 				0B060E3A221E73F8008F3BBD /* AppDelegate.swift in Sources */,
