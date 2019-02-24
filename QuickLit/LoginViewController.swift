@@ -26,6 +26,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         email_textfield.delegate = self
         password_textfield.delegate = self
         
+        log_in_button.layer.cornerRadius = 10
+        log_in_button.layer.borderWidth = 1
+        log_in_button.layer.borderColor = UIColor.clear.cgColor
+        
+        
         
     }
     
@@ -75,5 +80,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 
 }
