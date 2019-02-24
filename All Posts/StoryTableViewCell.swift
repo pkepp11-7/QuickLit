@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol saveWasTappedDelegate : class    {
+    func saveStoryWasTapped(cell: StoryTableViewCell)
+}
+
 class StoryTableViewCell: UITableViewCell {
 
     @IBOutlet weak var genre_label: UILabel!
@@ -22,6 +26,7 @@ class StoryTableViewCell: UITableViewCell {
     
     @IBOutlet weak var author_label: UILabel!
     
+    weak var delegate: saveWasTappedDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,6 +41,7 @@ class StoryTableViewCell: UITableViewCell {
 
     
     @IBAction func saveAction(_ sender: UIButton) {
+        delegate!.saveStoryWasTapped(cell: self)
     }
     
     
