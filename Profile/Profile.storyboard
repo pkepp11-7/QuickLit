@@ -10,6 +10,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--root-->
+        <scene sceneID="5Iu-uu-nRP">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="root" id="sCj-dd-Z89" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="7Oh-Qz-9ll"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uRF-Vq-Ru8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="564" y="-389"/>
+        </scene>
         <!--Profile-->
         <scene sceneID="cWd-yA-e58">
             <objects>
@@ -220,7 +230,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mnM-ne-aBi"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Profile" id="565-Yo-sdi"/>
+                    <navigationItem key="navigationItem" title="Profile" id="565-Yo-sdi">
+                        <barButtonItem key="leftBarButtonItem" title="Sign Out" id="RQ5-JE-Q2N">
+                            <connections>
+                                <action selector="signOutPressed:" destination="ZdG-3S-vAc" id="5HO-4V-caU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="aboutTitleLable" destination="6tZ-ER-TpA" id="TYm-5e-OpM"/>
                         <outlet property="favoritesTable" destination="R0u-Df-pIW" id="0q2-De-UVY"/>
@@ -231,6 +247,7 @@
                         <outlet property="usernameLabel" destination="y2V-eE-tso" id="nzT-QD-peW"/>
                         <segue destination="PTi-ik-i44" kind="show" identifier="toStoriesList" id="NnP-Dc-OWR"/>
                         <segue destination="mq2-Yg-dXC" kind="show" identifier="toLibraryTable" id="KZT-hk-O9U"/>
+                        <segue destination="sCj-dd-Z89" kind="showDetail" identifier="returnHome" id="H2R-st-fOe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sRt-NV-C2W" userLabel="First Responder" sceneMemberID="firstResponder"/>
