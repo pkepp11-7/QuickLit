@@ -26,10 +26,11 @@ class WriteStoryTableViewController: UITableViewController, UITextFieldDelegate,
         firebaseRef = Database.database().reference()
     }
     
-    func didSelectGenre(genre: String) {
+    func didSelectGenre(genre: String){
         pickedGenre = genre
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.cellForRow(at: indexPath)?.textLabel!.text = genre
+        
     }
     
     
