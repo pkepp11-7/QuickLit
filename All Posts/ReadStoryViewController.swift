@@ -11,6 +11,8 @@ import Firebase
 
 class ReadStoryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
     
+    var saveSuccessAlert: UIAlertController?
+    var saveFailureAlert: UIAlertController?
     
     @IBOutlet weak var content_scrollview: UIScrollView!
     
@@ -40,12 +42,19 @@ class ReadStoryViewController: UIViewController, UICollectionViewDelegate, UICol
     var author_name = ""
     
     var found_poster = ""
+    var foundIDLibrary = ""
     
     var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        saveSuccessAlert = UIAlertController(title: "Saved To Library!", message: "", preferredStyle: .alert)
+        saveSuccessAlert!.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "done action"), style: .default, handler: nil))
+        
+        saveFailureAlert = UIAlertController(title: "This story is already in your library", message: "", preferredStyle: .alert)
+        saveFailureAlert!.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "done action"), style: .default, handler: nil))
         
         like_button.layer.cornerRadius = 10
         like_button.layer.borderWidth = 1
@@ -249,7 +258,45 @@ class ReadStoryViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     @IBAction func addToLibraryAction(_ sender: UIButton) {
-        firebaseRef?.child("Users").child((Auth.auth().currentUser?.uid)!).child("library").child((current_story?.database_key)!).setValue(current_story?.title)
+        checkLibrary(completion: { foundID in
+            if(foundID){
+                self.present(self.saveFailureAlert!, animated: true)
+                
+            }
+            else{
+                self.firebaseRef?.child("Users").child((Auth.auth().currentUser?.uid)!).child("library").child((self.current_story?.database_key)!).setValue(self.current_story?.title)
+                self.present(self.saveSuccessAlert!, animated: true)
+            }
+            
+        })
+    }
+    
+    func checkLibrary(completion: @escaping (_ foundID: Bool) -> Void){
+        let libraryPath = firebaseRef?.child("Users").child((Auth.auth().currentUser?.uid)!).child("library")
+        libraryPath?.observe(.value, with: { snapshot in
+            if(snapshot.value is NSNull) {
+                completion(false)
+                
+            } else {
+                for story in snapshot.children{
+                    let storySnap = story as! DataSnapshot
+                    
+                    let databaseKey = storySnap.key
+                    
+                    if(databaseKey == self.current_story?.database_key){
+                        self.foundIDLibrary = databaseKey
+                    }
+                }
+                
+                
+                if(self.foundIDLibrary == ""){
+                    completion(false)
+                }
+                else{
+                    completion(true)
+                }
+            }
+        })
     }
     
     
