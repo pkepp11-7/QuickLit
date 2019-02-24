@@ -16,6 +16,12 @@ class StoryTableViewCell: UITableViewCell {
     
     @IBOutlet weak var save_button: UIButton!
     
+    @IBOutlet weak var likes_label: UILabel!
+    
+    @IBOutlet weak var length_label: UILabel!
+    
+    @IBOutlet weak var author_label: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

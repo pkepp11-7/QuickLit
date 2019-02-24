@@ -9,8 +9,10 @@
 import UIKit
 import Firebase
 
-class ReadStoryViewController: UIViewController {
+class ReadStoryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
     
+    
+    @IBOutlet weak var content_scrollview: UIScrollView!
     
     @IBOutlet weak var author_label: UILabel!
     @IBOutlet weak var title_label: UILabel!
@@ -37,11 +39,21 @@ class ReadStoryViewController: UIViewController {
     
     var author_name = ""
     
+    var refreshControl = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        content_scrollview.contentSize = CGSize(width: self.view.frame.size.width, height: 900)
+        
         firebaseRef = Database.database().reference()
         
+        comments_collectionview.delegate = self
+        comments_collectionview.dataSource = self
+        
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to Refresh")
+        refreshControl.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
+        content_scrollview.addSubview(refreshControl)
         
         checkUserName(completion: { foundAllBoards in
             if(foundAllBoards){
@@ -59,11 +71,111 @@ class ReadStoryViewController: UIViewController {
                 }
             }
         })
-        
-        
-       
     }
     
+    @objc func refresh(sender:AnyObject){
+        
+        let storiesPath = self.firebaseRef?.child("Stories").child((current_story?.database_key)!)
+        storiesPath?.observeSingleEvent(of: .value, with: { snapshot in
+            let postID = snapshot.key
+            var post_author = ""
+            var date_published = ""
+            var genre = ""
+            var story_text = ""
+            var title = ""
+            var likes = -1
+            var comments = [comment]()
+            
+            let post_author_snap = snapshot.childSnapshot(forPath: "author")
+            if let post_author_value = post_author_snap.value as? String {
+                post_author = post_author_value
+            }
+            
+            let date_published_snap = snapshot.childSnapshot(forPath: "date_published")
+            if let date_published_value = date_published_snap.value as? String {
+                date_published = date_published_value
+            }
+            
+            let genre_snap = snapshot.childSnapshot(forPath: "genre")
+            if let genre_value = genre_snap.value as? String {
+                genre = genre_value
+            }
+            
+            let story_snap = snapshot.childSnapshot(forPath: "story")
+            if let story_value = story_snap.value as? String {
+                story_text = story_value
+            }
+            
+            let title_snap = snapshot.childSnapshot(forPath: "title")
+            if let title_value = title_snap.value as? String {
+                title = title_value
+            }
+            
+            if(snapshot.childSnapshot(forPath: "likes").exists()){
+                let likes_snap = snapshot.childSnapshot(forPath: "likes")
+                if let likes_value = likes_snap.value as? Int {
+                    likes = likes_value
+                }
+            }
+            if(snapshot.childSnapshot(forPath: "comments").exists()){
+                let comments_snapshot = snapshot.childSnapshot(forPath: "comments")
+                for commentsSnap in comments_snapshot.children{
+                    let commentSnapshot = commentsSnap as! DataSnapshot
+                    
+                    let commentKey = commentSnapshot.key
+                    var comment_date = ""
+                    var comment_text = ""
+                    var poster = ""
+                    
+                    let comment_date_snap = commentSnapshot.childSnapshot(forPath: "comment_date")
+                    if let comment_date_value = comment_date_snap.value as? String{
+                        comment_date = comment_date_value
+                    }
+                    
+                    let comment_text_snap = commentSnapshot.childSnapshot(forPath: "comment_text")
+                    if let comment_text_value = comment_text_snap.value as? String {
+                        comment_text = comment_text_value
+                    }
+                    
+                    let poster_snap = commentSnapshot.childSnapshot(forPath: "poster")
+                    if let poster_value = poster_snap.value as? String {
+                        poster = poster_value
+                    }
+                    
+                    if(comment_date != "" && comment_text != "" && poster != ""){
+                        let newComment:comment = comment(poster: poster, comment_date: comment_date, comment_text: comment_text, database_key: commentKey)
+                        
+                        comments.append(newComment)
+                    }
+                }
+            }
+            
+            
+            if(post_author != "" && date_published != "" && genre != "" && story_text != "" && title != ""){
+                let newStory:story = story(author: post_author, date_published: date_published, genre: genre, story: story_text, title: title, database_key: postID)
+                
+                if(likes != -1){
+                    newStory.likes = likes
+                }
+                if(comments.count > 0){
+                    newStory.comments = comments
+                }
+                
+                self.current_story = newStory
+            }
+            self.comments_collectionview.reloadData()
+            
+            if(self.current_story?.likes == nil){
+                self.total_likes_label.text = "0"
+            }
+            else{
+                self.total_likes_label.text = "\((self.current_story?.likes!)!)"
+            }
+            
+            
+            self.refreshControl.endRefreshing()
+        })
+    }
     
     
     func checkUserName(completion: @escaping (_ foundUserName: Bool) -> Void){
@@ -111,8 +223,9 @@ class ReadStoryViewController: UIViewController {
         
     }
     
-    /*
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         if(current_story?.comments == nil){
             return 0
         }
@@ -122,9 +235,17 @@ class ReadStoryViewController: UIViewController {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "commentCell", for: indexPath) as! CommentCollectionViewCell
+        if(current_story?.comments != nil){
+            cell.comment_textview.text = current_story?.comments![indexPath.row].comment_text
+            cell.comment_date_label.text = current_story?.comments![indexPath.row].comment_date
+            
+        }
+        return cell
+        
     }
-    */
+ 
     
 
     
