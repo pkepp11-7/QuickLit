@@ -41,6 +41,8 @@
 		3E2CA4DB22225EDB00537981 /* BrowseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2CA4DA22225EDB00537981 /* BrowseCell.swift */; };
 		3E2CA4DD22228D6400537981 /* ProfileStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2CA4DC22228D6400537981 /* ProfileStats.swift */; };
 		3E2CA4DF2222A05400537981 /* ProfileStoryTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2CA4DE2222A05400537981 /* ProfileStoryTableController.swift */; };
+		3E2CA4E12222D8D400537981 /* LibraryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2CA4E02222D8D400537981 /* LibraryTableViewController.swift */; };
+		3E2CA4E32222E11400537981 /* userimg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E2CA4E22222E11300537981 /* userimg.png */; };
 		3EEECA2D2221CA3000AEA48F /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EEECA2C2221CA3000AEA48F /* Profile.storyboard */; };
 		3EEECA2F2221CED600AEA48F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEECA2E2221CED600AEA48F /* ProfileViewController.swift */; };
 		3EEECA312221E8FE00AEA48F /* FavoritesSmallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEECA302221E8FE00AEA48F /* FavoritesSmallCell.swift */; };
@@ -107,6 +109,8 @@
 		3E2CA4DA22225EDB00537981 /* BrowseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseCell.swift; sourceTree = "<group>"; };
 		3E2CA4DC22228D6400537981 /* ProfileStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStats.swift; sourceTree = "<group>"; };
 		3E2CA4DE2222A05400537981 /* ProfileStoryTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStoryTableController.swift; sourceTree = "<group>"; };
+		3E2CA4E02222D8D400537981 /* LibraryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryTableViewController.swift; sourceTree = "<group>"; };
+		3E2CA4E22222E11300537981 /* userimg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userimg.png; sourceTree = "<group>"; };
 		3EEECA2C2221CA3000AEA48F /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		3EEECA2E2221CED600AEA48F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		3EEECA302221E8FE00AEA48F /* FavoritesSmallCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesSmallCell.swift; sourceTree = "<group>"; };
@@ -177,6 +181,7 @@
 		0B060E38221E73F8008F3BBD /* QuickLit */ = {
 			isa = PBXGroup;
 			children = (
+				3E2CA4E22222E11300537981 /* userimg.png */,
 				0B060E39221E73F8008F3BBD /* AppDelegate.swift */,
 				0B060E3D221E73F8008F3BBD /* Main.storyboard */,
 				0B8501AD2221CF7E00A9B85B /* CreateAccountViewController.swift */,
@@ -267,6 +272,7 @@
 				3EEECA2E2221CED600AEA48F /* ProfileViewController.swift */,
 				3EEECA302221E8FE00AEA48F /* FavoritesSmallCell.swift */,
 				3E2CA4DE2222A05400537981 /* ProfileStoryTableController.swift */,
+				3E2CA4E02222D8D400537981 /* LibraryTableViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -397,6 +403,7 @@
 				0BB2B5B8222209BF00E86449 /* Browse.storyboard in Resources */,
 				3EEECA2D2221CA3000AEA48F /* Profile.storyboard in Resources */,
 				0B060E44221E73FA008F3BBD /* Assets.xcassets in Resources */,
+				3E2CA4E32222E11400537981 /* userimg.png in Resources */,
 				0B060E3F221E73F8008F3BBD /* Main.storyboard in Resources */,
 				0B8501AA2221C77700A9B85B /* CreateStory.storyboard in Resources */,
 				0BB2B5B52222098100E86449 /* AllPosts.storyboard in Resources */,
@@ -520,6 +527,7 @@
 				0BB2B5C022220F9B00E86449 /* stories.swift in Sources */,
 				0BB2B5C822223D5600E86449 /* CreateCommentViewController.swift in Sources */,
 				0BB2B5C422222E8F00E86449 /* ReadStoryViewController.swift in Sources */,
+				3E2CA4E12222D8D400537981 /* LibraryTableViewController.swift in Sources */,
 				0BB2B5C62222337F00E86449 /* CommentCollectionViewCell.swift in Sources */,
 				3EEECA2F2221CED600AEA48F /* ProfileViewController.swift in Sources */,
 				0BB2B5BC22220D6400E86449 /* AllPostsViewController.swift in Sources */,

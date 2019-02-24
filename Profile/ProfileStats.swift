@@ -23,6 +23,7 @@ class ProfileStats {
     var followerCount: Int = 0
     var userPosts: [String: String] = [:]
     var libraryPosts: [String] = []
+    var libraryKeys: [String] = []
     var delegate: StatsDelegate?
     
     func getStats() {
@@ -57,6 +58,7 @@ class ProfileStats {
                 for posts in postSnapshot.children {
                     let postSnap = posts as! DataSnapshot
                     self.libraryPosts.append(postSnap.value as! String)
+                    self.libraryKeys.append(postSnap.key)
                 }
             }
             self.delegate?.updateLibrary()
