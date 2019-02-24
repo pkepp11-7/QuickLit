@@ -13,6 +13,7 @@ class ProfileStoryTableController: UITableViewController {
     
     var keyTitlePairs: [String : String] = [:]
     var profileStories: [story] = []
+    var selectedRow: Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,7 @@ class ProfileStoryTableController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        getProfileStories()
     }
 
     // MARK: - Table view data source
@@ -33,7 +35,7 @@ class ProfileStoryTableController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return keyTitlePairs.count
+        return profileStories.count
     }
     
     func getProfileStories() {
@@ -117,8 +119,7 @@ class ProfileStoryTableController: UITableViewController {
                     }
                 }
                 
-                
-                if(self.keyTitlePairs.keys.contains(postID) && post_author != "" && date_published != "" && genre != "" && story_text != "" && title != "" ){
+                if(self.keyTitlePairs[postID] != nil && post_author != "" && date_published != "" && genre != "" && story_text != "" && title != "" ){
                     let newStory:story = story(author: post_author, date_published: date_published, genre: genre, story: story_text, title: title, database_key: postID)
                     self.profileStories.append(newStory)
                     
@@ -138,13 +139,35 @@ class ProfileStoryTableController: UITableViewController {
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "profileStoryCell", for: indexPath) as! StoryTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "storyCell", for: indexPath) as! StoryTableViewCell
 
-        cell.title_label.text = profileStories[indexPath.row].title
-        cell.genre_label.text = profileStories[indexPath.row].genre
+        let currStory = profileStories[indexPath.row]
+        
+        cell.title_label.text = currStory.title
+        cell.genre_label.text = currStory.genre
+        if(currStory.likes != nil)
+        {
+            cell.likes_label.text = String(currStory.likes!)
+        }
+        else
+        {
+            cell.likes_label.text = "0"
+        }
+        cell.author_label.isHidden = true
         // Configure the cell...
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView,
+                            didSelectRowAt indexPath: IndexPath) {
+        self.selectedRow = indexPath.row // retain for prepareForSegue
+        performSegue(withIdentifier: "toStoryPost", sender: nil)
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 110
     }
 
     /*
@@ -182,14 +205,17 @@ class ProfileStoryTableController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if(segue.identifier == "toStoryPost"){
+            let storyVC = segue.destination as! ReadStoryViewController
+            storyVC.current_story = profileStories[self.selectedRow]
+        }
+        
     }
-    */
 
 }

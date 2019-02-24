@@ -14,7 +14,6 @@ class GenreTableController: UITableViewController {
     
     let possibleGenres: [String] = [
         "Action/Adventure",
-        "Adventure",
         "Comedy",
         "Crime",
         "Drama",
