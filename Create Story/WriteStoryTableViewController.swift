@@ -25,6 +25,9 @@ class WriteStoryTableViewController: UITableViewController, UITextFieldDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title_textfield.delegate = self
+        story_textview.delegate = self
+        
         firebaseRef = Database.database().reference()
         
         completeFieldsAlert = UIAlertController(title: "Complete all fields before publishing", message: "", preferredStyle: .alert)
@@ -70,7 +73,10 @@ class WriteStoryTableViewController: UITableViewController, UITextFieldDelegate,
             story_textview.text = ""
             tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.textLabel!.text = "None"
             
+            title_textfield.resignFirstResponder()
+            story_textview.resignFirstResponder()
             self.present(self.publishedAlert!, animated: true)
+            
             
         }
         else{
@@ -94,6 +100,11 @@ class WriteStoryTableViewController: UITableViewController, UITextFieldDelegate,
         if(indexPath.section == 0 && indexPath.row == 0){
             performSegue(withIdentifier: "selectGenreSegue", sender: self)
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 
     /*
@@ -139,6 +150,14 @@ class WriteStoryTableViewController: UITableViewController, UITextFieldDelegate,
         if(segue.identifier == "selectGenreSegue"){
             let vc = segue.destination as! SelectGenreViewController
             vc.selectGenreDelegate = self
+        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for inputViews in self.view.subviews{
+            if((inputViews.isKind(of: UITextField.self) || (inputViews.isKind(of: UITextView.self))) && inputViews.isFirstResponder){
+                inputViews.resignFirstResponder()
+            }
         }
     }
  
