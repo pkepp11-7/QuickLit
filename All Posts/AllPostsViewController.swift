@@ -19,6 +19,8 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var all_posts_tableview: UITableView!
     
+    var currentRow = -1
+    var foundAuthor = ""
     
     
     
@@ -125,14 +127,19 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
                     if(likes != -1){
                         newStory.likes = likes
                     }
+                    else{
+                        newStory.likes = 0
+                    }
                     if(comments.count > 0){
                         newStory.comments = comments
                     }
                     
                     self.stories.append(newStory)
                     
+                    
                 }
             }
+            
             self.all_posts_tableview.reloadData()
         })
     }
@@ -161,15 +168,62 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "storyCell", for: indexPath) as! StoryTableViewCell
         
-        
+        currentRow = indexPath.row
         
         cell.genre_label.text = stories[indexPath.row].genre
         cell.title_label.text = stories[indexPath.row].title
+        if(stories[indexPath.row].likes != nil){
+            cell.likes_label.text = "\((stories[indexPath.row].likes)!)"
+        }
+        else{
+            cell.likes_label.text = "0"
+        }
+        
+        let components = stories[indexPath.row].story.components(separatedBy: .whitespacesAndNewlines)
+        let words = components.filter { !$0.isEmpty }
+        
+        if(words.count < 3000){
+            cell.length_label.text = "short"
+        }
+        else if(words.count > 3000 && words.count < 6000){
+            cell.length_label.text = "medium"
+        }
+        else{
+            cell.length_label.text = "long"
+        }
+        
+        
+        checkUserName(completion: { foundAllBoards in
+            if(foundAllBoards){
+                cell.author_label.text = self.foundAuthor
+            }
+        })
+        
+        self.foundAuthor = ""
         
         return cell
     }
     
     
+    func checkUserName(completion: @escaping (_ foundUserName: Bool) -> Void){
+        let postersPath = firebaseRef?.child("Users").child(stories[currentRow].author).child("username")
+        postersPath?.observe(.value, with: { snapshot in
+            if(snapshot.value is NSNull) {
+            } else {
+                
+                self.foundAuthor = snapshot.value as! String
+                
+                
+                if(self.foundAuthor == ""){
+                    completion(false)
+                }
+                else{
+                    completion(true)
+                }
+            }
+        })
+        
+    }
     
     // MARK: - Navigation
 
