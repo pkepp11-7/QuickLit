@@ -39,10 +39,26 @@ class ReadStoryViewController: UIViewController, UICollectionViewDelegate, UICol
     
     var author_name = ""
     
+    var found_poster = ""
+    
     var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        like_button.layer.cornerRadius = 10
+        like_button.layer.borderWidth = 1
+        like_button.layer.borderColor = UIColor.clear.cgColor
+        
+        add_comment_button.layer.cornerRadius = 10
+        add_comment_button.layer.borderWidth = 1
+        add_comment_button.layer.borderColor = UIColor.clear.cgColor
+        
+        add_to_libary_button.layer.cornerRadius = 10
+        add_to_libary_button.layer.borderWidth = 1
+        add_to_libary_button.layer.borderColor = UIColor.clear.cgColor
+        
 
         content_scrollview.contentSize = CGSize(width: self.view.frame.size.width, height: 900)
         
@@ -58,7 +74,7 @@ class ReadStoryViewController: UIViewController, UICollectionViewDelegate, UICol
         checkUserName(completion: { foundAllBoards in
             if(foundAllBoards){
                 self.genre_label.text = self.current_story?.genre
-                self.author_label.text = self.author_name
+                self.author_label.text = "By: \(self.author_name)"
                 self.title_label.text = self.current_story?.title
                 
                 self.story_textview.text = self.current_story?.story
@@ -215,19 +231,32 @@ class ReadStoryViewController: UIViewController, UICollectionViewDelegate, UICol
                 self.total_likes_label.text = "\((currentData.value)!)"
             }
             
+            
+            
+            return TransactionResult.success(withValue: currentData)
+        })
+        
+        let userLikes = firebaseRef!.child("Users").child((current_story?.author)!).child("likes")
+        userLikes.runTransactionBlock( { (currentData: MutableData) -> TransactionResult in
+            
+            var currentCount = currentData.value as? Int ?? 0
+            currentCount += 1
+            currentData.value = currentCount
+            
+            
             return TransactionResult.success(withValue: currentData)
         })
     }
     
     @IBAction func addToLibraryAction(_ sender: UIButton) {
-        
+        firebaseRef?.child("Users").child((Auth.auth().currentUser?.uid)!).child("library").child((current_story?.database_key)!).setValue(current_story?.title)
     }
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if(current_story?.comments == nil){
-            return 0
+            return 1
         }
         else{
             return (current_story?.comments?.count)!
@@ -241,8 +270,41 @@ class ReadStoryViewController: UIViewController, UICollectionViewDelegate, UICol
             cell.comment_textview.text = current_story?.comments![indexPath.row].comment_text
             cell.comment_date_label.text = current_story?.comments![indexPath.row].comment_date
             
+            checkCommentUsername(completion: { foundAllBoards in
+                if(foundAllBoards){
+                    cell.poster_label.text = self.found_poster
+                }
+            })
+            
+            found_poster = ""
+            
+        }
+        else{
+            cell.comment_textview.text = "There are currently no comments on this story"
+            cell.comment_date_label.text = ""
+            cell.poster_label.text = ""
         }
         return cell
+        
+    }
+    
+    func checkCommentUsername(completion: @escaping (_ foundUserName: Bool) -> Void){
+        let postersPath = firebaseRef?.child("Users").child((current_story?.author)!).child("username")
+        postersPath?.observe(.value, with: { snapshot in
+            if(snapshot.value is NSNull) {
+            } else {
+                
+                self.found_poster = snapshot.value as! String
+                
+                
+                if(self.found_poster == ""){
+                    completion(false)
+                }
+                else{
+                    completion(true)
+                }
+            }
+        })
         
     }
  

@@ -24,6 +24,15 @@ class CreateCommentViewController: UIViewController {
         super.viewDidLoad()
 
         firebaseRef = Database.database().reference()
+        
+        
+        close_button.layer.cornerRadius = 10
+        close_button.layer.borderWidth = 1
+        close_button.layer.borderColor = UIColor.clear.cgColor
+        
+        submit_button.layer.cornerRadius = 10
+        submit_button.layer.borderWidth = 1
+        submit_button.layer.borderColor = UIColor.clear.cgColor
     }
     
     @IBAction func submitAction(_ sender: UIButton) {
