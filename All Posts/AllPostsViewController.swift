@@ -10,10 +10,61 @@ import UIKit
 import Firebase
 
 class AllPostsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, saveWasTappedDelegate {
+    
+    
+    var saveSuccessAlert: UIAlertController?
+    var saveFailureAlert: UIAlertController?
+    
+    var potentialIndexPath: IndexPath?
+    var foundIDLibrary = ""
+    
+    
     func saveStoryWasTapped(cell: StoryTableViewCell) {
         if let indexPath = all_posts_tableview.indexPath(for: cell){
-        firebaseRef?.child("Users").child((Auth.auth().currentUser?.uid)!).child("library").child(stories[indexPath.row].database_key).setValue(stories[indexPath.row].title)
+            potentialIndexPath = indexPath
+            
+            
+            checkLibrary(completion: { foundID in
+                if(foundID){
+                    self.present(self.saveFailureAlert!, animated: true)
+                    
+                }
+                else{
+                    self.firebaseRef?.child("Users").child((Auth.auth().currentUser?.uid)!).child("library").child(self.stories[indexPath.row].database_key).setValue(self.stories[indexPath.row].title)
+                    self.present(self.saveSuccessAlert!, animated: true)
+                }
+            
+            })
+            foundIDLibrary = ""
         }
+    }
+    
+    func checkLibrary(completion: @escaping (_ foundID: Bool) -> Void){
+        let libraryPath = firebaseRef?.child("Users").child((Auth.auth().currentUser?.uid)!).child("library")
+        libraryPath?.observe(.value, with: { snapshot in
+            if(snapshot.value is NSNull) {
+                completion(false)
+                
+            } else {
+                for story in snapshot.children{
+                    let storySnap = story as! DataSnapshot
+                    
+                    let databaseKey = storySnap.key
+                    
+                    if(databaseKey == self.stories[(self.potentialIndexPath?.row)!].database_key){
+                        self.foundIDLibrary = databaseKey
+                    }
+                }
+                
+                
+                if(self.foundIDLibrary == ""){
+                    completion(false)
+                }
+                else{
+                    completion(true)
+                }
+            }
+        })
     }
     
     
@@ -34,6 +85,12 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
 
         firebaseRef = Database.database().reference()
+        
+        saveSuccessAlert = UIAlertController(title: "Saved To Library!", message: "", preferredStyle: .alert)
+        saveSuccessAlert!.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "done action"), style: .default, handler: nil))
+        
+        saveFailureAlert = UIAlertController(title: "This story is already in your library", message: "", preferredStyle: .alert)
+        saveFailureAlert!.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "done action"), style: .default, handler: nil))
         
         all_posts_tableview.delegate = self
         all_posts_tableview.dataSource = self

@@ -115,7 +115,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GaD-HM-jvY">
-                                <rect key="frame" x="0.0" y="84" width="375" height="514"/>
+                                <rect key="frame" x="0.0" y="118" width="375" height="480"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="genreCell" id="39i-UD-h72" customClass="GenreTableViewCell" customModule="QuickLit" customModuleProvider="target">
@@ -140,10 +140,26 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h7i-RE-tMA">
-                                <rect key="frame" x="16" y="46" width="37" height="30"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aNw-WL-7As">
+                                <rect key="frame" x="0.0" y="71" width="375" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="close"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select A Genre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EJz-pv-grF">
+                                        <rect key="frame" x="111" y="6" width="153" height="27"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h7i-RE-tMA">
+                                <rect key="frame" x="16" y="39" width="46" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="close">
+                                    <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="closeButtonAction:" destination="Ho1-kg-dud" eventType="touchUpInside" id="sAQ-YA-gi2"/>
                                 </connections>
@@ -153,7 +169,7 @@
                         <constraints>
                             <constraint firstItem="GaD-HM-jvY" firstAttribute="trailing" secondItem="YxS-Mw-B4r" secondAttribute="trailing" id="KyG-qf-eAt"/>
                             <constraint firstItem="GaD-HM-jvY" firstAttribute="leading" secondItem="YxS-Mw-B4r" secondAttribute="leading" id="X71-jg-rGz"/>
-                            <constraint firstItem="GaD-HM-jvY" firstAttribute="top" secondItem="YxS-Mw-B4r" secondAttribute="top" constant="64" id="bnp-Uw-6cT"/>
+                            <constraint firstItem="GaD-HM-jvY" firstAttribute="top" secondItem="YxS-Mw-B4r" secondAttribute="top" constant="98" id="bnp-Uw-6cT"/>
                             <constraint firstItem="GaD-HM-jvY" firstAttribute="bottom" secondItem="YxS-Mw-B4r" secondAttribute="bottom" id="sMM-hZ-Xs8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YxS-Mw-B4r"/>
@@ -166,7 +182,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LAG-Km-b0h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="348" y="-310.79460269865069"/>
+            <point key="canvasLocation" x="348" y="-311.24437781109447"/>
         </scene>
         <!--Create-->
         <scene sceneID="MJg-97-sON">
