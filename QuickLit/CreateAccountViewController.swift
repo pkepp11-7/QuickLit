@@ -32,6 +32,14 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         email_textfield.delegate = self
         password_textfield.delegate = self
         
+        create_and_continue_button.layer.cornerRadius = 10
+        create_and_continue_button.layer.borderWidth = 1
+        create_and_continue_button.layer.borderColor = UIColor.clear.cgColor
+        
+        close_button.layer.cornerRadius = 10
+        close_button.layer.borderWidth = 1
+        close_button.layer.borderColor = UIColor.clear.cgColor
+        
     }
     
     @IBAction func closeAction(_ sender: UIButton) {

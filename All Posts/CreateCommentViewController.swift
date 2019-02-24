@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class CreateCommentViewController: UIViewController {
+class CreateCommentViewController: UIViewController, UITextViewDelegate {
     
     
     @IBOutlet weak var close_button: UIButton!
@@ -25,6 +25,7 @@ class CreateCommentViewController: UIViewController {
 
         firebaseRef = Database.database().reference()
         
+        comment_text.delegate = self
         
         close_button.layer.cornerRadius = 10
         close_button.layer.borderWidth = 1
@@ -62,6 +63,15 @@ class CreateCommentViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+    }
+    
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for inputViews in self.view.subviews{
+            if((inputViews.isKind(of: UITextField.self) || (inputViews.isKind(of: UITextView.self))) && inputViews.isFirstResponder){
+                inputViews.resignFirstResponder()
+            }
+        }
     }
 
 }
