@@ -1,19 +1,18 @@
 //
-//  BrowseTableController.swift
+//  ProfileStoryTableController.swift
 //  QuickLit
 //
-//  Created by Patrick Keppler on 2/23/19.
+//  Created by Patrick Keppler on 2/24/19.
 //  Copyright © 2019 Angel castaneda. All rights reserved.
 //
 
 import UIKit
 import Firebase
 
-class BrowseTableController: UITableViewController {
+class ProfileStoryTableController: UITableViewController {
     
-    var selectedRow: Int = 0
-    var selectedGenre: String = ""
-    var genreStories = [story]()
+    var keyTitlePairs: [String : String] = [:]
+    var profileStories: [story] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,11 +22,6 @@ class BrowseTableController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        getGenreStories()
-        let backBtn = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(backToGenre))
-        self.navigationItem.leftBarButtonItem = backBtn
-        self.navigationItem.title = selectedGenre
-        
     }
 
     // MARK: - Table view data source
@@ -39,27 +33,11 @@ class BrowseTableController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return genreStories.count
-    }
-
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "browseCell", for: indexPath) as! BrowseCell
-
-        // Configure the cell...
-        cell.titleLabel.text = genreStories[indexPath.row].title
-        cell.authorLabel.text = genreStories[indexPath.row].author
-        return cell
+        return keyTitlePairs.count
     }
     
-    @objc func backToGenre() {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    func getGenreStories() {
-        var firebaseRef: DatabaseReference?
-        firebaseRef = Database.database().reference()
-        
+    func getProfileStories() {
+        let firebaseRef: DatabaseReference? = Database.database().reference()
         let storiesPath = firebaseRef?.child("Stories")
         storiesPath?.observeSingleEvent(of: .value, with: { snapshot in
             for child in snapshot.children {
@@ -140,9 +118,9 @@ class BrowseTableController: UITableViewController {
                 }
                 
                 
-                if(post_author != "" && date_published != "" && genre == self.selectedGenre && story_text != "" && title != "" ){
+                if(self.keyTitlePairs.keys.contains(postID) && post_author != "" && date_published != "" && genre != "" && story_text != "" && title != "" ){
                     let newStory:story = story(author: post_author, date_published: date_published, genre: genre, story: story_text, title: title, database_key: postID)
-                    self.genreStories.append(newStory)
+                    self.profileStories.append(newStory)
                     
                     if(likes != -1){
                         newStory.likes = likes
@@ -155,17 +133,18 @@ class BrowseTableController: UITableViewController {
             }
             self.tableView.reloadData()
         })
-        
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 140
-    }
-    
-    override func tableView(_ tableView: UITableView,
-                            didSelectRowAt indexPath: IndexPath) {
-        self.selectedRow = indexPath.row // retain for prepareForSegue
-        performSegue(withIdentifier: "toPost", sender: nil)
+
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "profileStoryCell", for: indexPath) as! StoryTableViewCell
+
+        cell.title_label.text = profileStories[indexPath.row].title
+        cell.genre_label.text = profileStories[indexPath.row].genre
+        // Configure the cell...
+
+        return cell
     }
 
     /*
@@ -203,17 +182,14 @@ class BrowseTableController: UITableViewController {
     }
     */
 
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        if(segue.identifier == "toPost"){
-            let vc = segue.destination as! ReadStoryViewController
-            vc.current_story = genreStories[selectedRow]
-        }
     }
-
+    */
 
 }

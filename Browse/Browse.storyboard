@@ -142,10 +142,23 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Genre" id="bmP-dZ-r7z"/>
+                    <connections>
+                        <segue destination="dA4-dv-Zhv" kind="show" identifier="toPost" id="aRF-Wr-O8S"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lEL-Be-cXK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2016.8" y="-54.310344827586206"/>
+        </scene>
+        <!--postView-->
+        <scene sceneID="vXh-8w-1kq">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AllPosts" referencedIdentifier="postView" id="dA4-dv-Zhv" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="VSz-qE-GIn"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5v5-NH-2MF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2765" y="-55"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="AH2-J8-ODZ">

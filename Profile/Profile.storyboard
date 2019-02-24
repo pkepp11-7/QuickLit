@@ -214,12 +214,48 @@
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="565-Yo-sdi"/>
                     <connections>
+                        <outlet property="aboutTitleLable" destination="6tZ-ER-TpA" id="TYm-5e-OpM"/>
                         <outlet property="favoritesTable" destination="R0u-Df-pIW" id="0q2-De-UVY"/>
+                        <outlet property="followerCount" destination="kO6-SN-rXH" id="YUV-lo-3OF"/>
+                        <outlet property="followingCount" destination="2hj-H8-RGU" id="MJF-WD-oFN"/>
+                        <outlet property="likesCount" destination="gGt-rX-bpI" id="YTg-Rm-MMZ"/>
+                        <outlet property="storiesCount" destination="jJD-va-tdt" id="llv-mp-DH2"/>
+                        <outlet property="usernameLabel" destination="y2V-eE-tso" id="nzT-QD-peW"/>
+                        <segue destination="PTi-ik-i44" kind="push" identifier="toStoriesList" id="NnP-Dc-OWR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sRt-NV-C2W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="572" y="20.320197044334975"/>
+        </scene>
+        <!--Stories-->
+        <scene sceneID="SSh-GV-L3U">
+            <objects>
+                <tableViewController id="PTi-ik-i44" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="rMg-4e-CIr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="685"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="profileStoryCell" rowHeight="53" id="P6G-KT-3wp" customClass="StoryTableViewCell" customModule="QuickLit" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="53"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="P6G-KT-3wp" id="tcC-07-38r">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="52.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="PTi-ik-i44" id="veT-Ex-UgS"/>
+                            <outlet property="delegate" destination="PTi-ik-i44" id="fTY-Mi-5io"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Stories" id="TKR-T0-qyl"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hey-hf-BbX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1437.5999999999999" y="20.320197044334975"/>
         </scene>
         <!--Profile-->
         <scene sceneID="Fet-PS-4XF">
