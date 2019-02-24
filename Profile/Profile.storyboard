@@ -243,6 +243,7 @@
                         <outlet property="followerCount" destination="kO6-SN-rXH" id="YUV-lo-3OF"/>
                         <outlet property="followingCount" destination="2hj-H8-RGU" id="MJF-WD-oFN"/>
                         <outlet property="likesCount" destination="gGt-rX-bpI" id="YTg-Rm-MMZ"/>
+                        <outlet property="profileContent" destination="cAf-13-VlA" id="vIk-dN-NR6"/>
                         <outlet property="storiesCount" destination="jJD-va-tdt" id="llv-mp-DH2"/>
                         <outlet property="usernameLabel" destination="y2V-eE-tso" id="nzT-QD-peW"/>
                         <segue destination="PTi-ik-i44" kind="show" identifier="toStoriesList" id="NnP-Dc-OWR"/>
