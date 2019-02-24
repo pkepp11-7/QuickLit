@@ -11,6 +11,7 @@ import Firebase
 
 class BrowseTableController: UITableViewController {
     
+    var selectedRow: Int = 0
     var selectedGenre: String = ""
     var genreStories = [story]()
 
@@ -70,6 +71,8 @@ class BrowseTableController: UITableViewController {
                 var genre = ""
                 var story_text = ""
                 var title = ""
+                var likes = -1
+                var comments = [comment]()
                 
                 let post_author_snap = snap.childSnapshot(forPath: "author")
                 if let post_author_value = post_author_snap.value as? String {
@@ -96,10 +99,57 @@ class BrowseTableController: UITableViewController {
                     title = title_value
                 }
                 
+                if(snap.childSnapshot(forPath: "likes").exists()){
+                    let likes_snap = snap.childSnapshot(forPath: "likes")
+                    if let likes_value = likes_snap.value as? Int {
+                        likes = likes_value
+                    }
+                }
+                
+                if(snap.childSnapshot(forPath: "comments").exists()){
+                    let comments_snapshot = snap.childSnapshot(forPath: "comments")
+                    for commentsSnap in comments_snapshot.children{
+                        let commentSnapshot = commentsSnap as! DataSnapshot
+                        
+                        let commentKey = commentSnapshot.key
+                        var comment_date = ""
+                        var comment_text = ""
+                        var poster = ""
+                        
+                        let comment_date_snap = commentSnapshot.childSnapshot(forPath: "comment_date")
+                        if let comment_date_value = comment_date_snap.value as? String{
+                            comment_date = comment_date_value
+                        }
+                        
+                        let comment_text_snap = commentSnapshot.childSnapshot(forPath: "comment_text")
+                        if let comment_text_value = comment_text_snap.value as? String {
+                            comment_text = comment_text_value
+                        }
+                        
+                        let poster_snap = commentSnapshot.childSnapshot(forPath: "poster")
+                        if let poster_value = poster_snap.value as? String {
+                            poster = poster_value
+                        }
+                        
+                        if(comment_date != "" && comment_text != "" && poster != ""){
+                            let newComment:comment = comment(poster: poster, comment_date: comment_date, comment_text: comment_text, database_key: commentKey)
+                            
+                            comments.append(newComment)
+                        }
+                    }
+                }
+                
                 
                 if(post_author != "" && date_published != "" && genre == self.selectedGenre && story_text != "" && title != "" ){
                     let newStory:story = story(author: post_author, date_published: date_published, genre: genre, story: story_text, title: title, database_key: postID)
                     self.genreStories.append(newStory)
+                    
+                    if(likes != -1){
+                        newStory.likes = likes
+                    }
+                    if(comments.count > 0){
+                        newStory.comments = comments
+                    }
                     
                 }
             }
@@ -110,6 +160,12 @@ class BrowseTableController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 140
+    }
+    
+    override func tableView(_ tableView: UITableView,
+                            didSelectRowAt indexPath: IndexPath) {
+        self.selectedRow = indexPath.row // retain for prepareForSegue
+        performSegue(withIdentifier: "toPost", sender: nil)
     }
 
     /*
@@ -147,14 +203,17 @@ class BrowseTableController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if(segue.identifier == "toPost"){
+            let vc = segue.destination as! ReadStoryViewController
+            vc.current_story = genreStories[selectedRow]
+        }
     }
-    */
+
 
 }

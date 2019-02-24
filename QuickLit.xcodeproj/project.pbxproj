@@ -39,6 +39,7 @@
 		3E2CA4D72222431E00537981 /* GenreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2CA4D62222431D00537981 /* GenreCell.swift */; };
 		3E2CA4D92222513500537981 /* BrowseTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2CA4D82222513500537981 /* BrowseTableController.swift */; };
 		3E2CA4DB22225EDB00537981 /* BrowseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2CA4DA22225EDB00537981 /* BrowseCell.swift */; };
+		3E2CA4DD22228D6400537981 /* ProfileStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2CA4DC22228D6400537981 /* ProfileStats.swift */; };
 		3EEECA2D2221CA3000AEA48F /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EEECA2C2221CA3000AEA48F /* Profile.storyboard */; };
 		3EEECA2F2221CED600AEA48F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEECA2E2221CED600AEA48F /* ProfileViewController.swift */; };
 		3EEECA312221E8FE00AEA48F /* FavoritesSmallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEECA302221E8FE00AEA48F /* FavoritesSmallCell.swift */; };
@@ -103,6 +104,7 @@
 		3E2CA4D62222431D00537981 /* GenreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreCell.swift; sourceTree = "<group>"; };
 		3E2CA4D82222513500537981 /* BrowseTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseTableController.swift; sourceTree = "<group>"; };
 		3E2CA4DA22225EDB00537981 /* BrowseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseCell.swift; sourceTree = "<group>"; };
+		3E2CA4DC22228D6400537981 /* ProfileStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStats.swift; sourceTree = "<group>"; };
 		3EEECA2C2221CA3000AEA48F /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		3EEECA2E2221CED600AEA48F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		3EEECA302221E8FE00AEA48F /* FavoritesSmallCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesSmallCell.swift; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				3EEECA2C2221CA3000AEA48F /* Profile.storyboard */,
+				3E2CA4DC22228D6400537981 /* ProfileStats.swift */,
 				3EEECA2E2221CED600AEA48F /* ProfileViewController.swift */,
 				3EEECA302221E8FE00AEA48F /* FavoritesSmallCell.swift */,
 			);
@@ -505,6 +508,7 @@
 				3E2CA4CF2222306000537981 /* quickTabBarController.swift in Sources */,
 				3E2CA4D522223E0800537981 /* GenreTableController.swift in Sources */,
 				0B8501B72221F96E00A9B85B /* SelectGenreViewController.swift in Sources */,
+				3E2CA4DD22228D6400537981 /* ProfileStats.swift in Sources */,
 				0BB2B5CA22225B5A00E86449 /* comments.swift in Sources */,
 				0B8501B52221E1CB00A9B85B /* WriteStoryTableViewController.swift in Sources */,
 				0B8501AC2221CA3F00A9B85B /* LoginViewController.swift in Sources */,

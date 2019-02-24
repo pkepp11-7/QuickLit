@@ -214,7 +214,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="565-Yo-sdi"/>
                     <connections>
+                        <outlet property="aboutTitleLable" destination="6tZ-ER-TpA" id="TYm-5e-OpM"/>
                         <outlet property="favoritesTable" destination="R0u-Df-pIW" id="0q2-De-UVY"/>
+                        <outlet property="followerCount" destination="kO6-SN-rXH" id="YUV-lo-3OF"/>
+                        <outlet property="followingCount" destination="2hj-H8-RGU" id="MJF-WD-oFN"/>
+                        <outlet property="likesCount" destination="gGt-rX-bpI" id="YTg-Rm-MMZ"/>
+                        <outlet property="storiesCount" destination="jJD-va-tdt" id="llv-mp-DH2"/>
+                        <outlet property="usernameLabel" destination="y2V-eE-tso" id="nzT-QD-peW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sRt-NV-C2W" userLabel="First Responder" sceneMemberID="firstResponder"/>
