@@ -10,9 +10,8 @@ import UIKit
 
 class FavoritesSmallCell: UITableViewCell {
     
-    var titleStr: String = ""
-    var authorStr: String = ""
-
+    @IBOutlet weak var storyTitle: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

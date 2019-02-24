@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import Firebase
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, StatsDelegate {
     
     var selectedRow: Int = 0
     var myStats: ProfileStats = ProfileStats()
+    var myLibrary: ProfileStats = ProfileStats()
     
     @IBOutlet weak var favoritesTable: UITableView!
     
@@ -28,17 +30,24 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var aboutTitleLable: UILabel!
     
+    @IBOutlet weak var cellStoryLabel: UILabel!
+    
+    @IBAction func storiesCounterPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "toStoriesList", sender: self)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        var minValue = 3
+        if(myLibrary.libraryPosts.count < minValue) {
+            minValue = myLibrary.libraryPosts.count
+        }
+        return minValue
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier:"favoritesSmallCell", for: indexPath) as! FavoritesSmallCell
-        
-        cell.authorStr = "testname"
-        cell.titleStr = "testtitle"
-        
+        cell.storyTitle.text = myLibrary.libraryPosts[indexPath.row]
         return cell
     }
     
@@ -53,13 +62,23 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        likesCount.setTitle("0", for: .normal)
+        followingCount.setTitle("0", for: .normal)
+        followerCount.setTitle("0", for: .normal)
         myStats.delegate = self
         myStats.getStats()
+        myLibrary.delegate = self
+        myLibrary.getLibrary()
         favoritesTable.delegate = self
         favoritesTable.dataSource = self
         favoritesTable.tableFooterView = UIView(frame: .zero)
     }
     
+    
+    
+    func updateLibrary() {
+        favoritesTable.reloadData()
+    }
 
     
     // MARK: - Navigation
@@ -70,6 +89,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Pass the selected object to the new view controller.
         if(segue.identifier == "toStoriesList") {
             let storiesListVC = segue.destination as! ProfileStoryTableController
+            print(myStats.userPosts)
             storiesListVC.keyTitlePairs = myStats.userPosts
         }
         
