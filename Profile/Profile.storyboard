@@ -18,10 +18,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="685"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="106.66666666666666" placeholderIntrinsicHeight="90" text="Username" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y2V-eE-tso">
-                                <rect key="frame" x="248" y="98" width="107" height="90"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y2V-eE-tso">
+                                <rect key="frame" x="130" y="98" width="225" height="90"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="107" id="elJ-eq-Ahh"/>
+                                    <constraint firstAttribute="height" constant="90" id="JCu-fY-p7d"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>
@@ -202,6 +202,7 @@
                         <constraints>
                             <constraint firstItem="mnM-ne-aBi" firstAttribute="bottom" secondItem="cAf-13-VlA" secondAttribute="bottom" constant="10" id="C7a-SI-Ct3"/>
                             <constraint firstItem="cAf-13-VlA" firstAttribute="top" secondItem="4kO-9z-ZNn" secondAttribute="bottom" constant="20" id="DOh-jr-gPj"/>
+                            <constraint firstItem="y2V-eE-tso" firstAttribute="leading" secondItem="4kO-9z-ZNn" secondAttribute="trailing" constant="20" id="G3p-yY-Bvc"/>
                             <constraint firstItem="4kO-9z-ZNn" firstAttribute="leading" secondItem="cAf-13-VlA" secondAttribute="leading" id="Nzq-Rj-sev"/>
                             <constraint firstItem="4kO-9z-ZNn" firstAttribute="leading" secondItem="mnM-ne-aBi" secondAttribute="leading" constant="20" id="Qmu-Wt-vFx"/>
                             <constraint firstItem="4kO-9z-ZNn" firstAttribute="top" secondItem="mnM-ne-aBi" secondAttribute="top" constant="10" id="dtl-Nb-9RG"/>

@@ -29,6 +29,12 @@
 		0BB2B5C022220F9B00E86449 /* stories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB2B5BF22220F9B00E86449 /* stories.swift */; };
 		0BB2B5C22222147B00E86449 /* StoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB2B5C12222147B00E86449 /* StoryTableViewCell.swift */; };
 		0BF1C41E221E79AF005B4185 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF1C41D221E79AF005B4185 /* GoogleService-Info.plist */; };
+		3E2CA4CF2222306000537981 /* quickTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2CA4CE2222306000537981 /* quickTabBarController.swift */; };
+		3E2CA4D122223C3100537981 /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2CA4D022223C3100537981 /* BrowseViewController.swift */; };
+		3E2CA4D522223E0800537981 /* GenreTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2CA4D422223E0800537981 /* GenreTableController.swift */; };
+		3E2CA4D72222431E00537981 /* GenreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2CA4D62222431D00537981 /* GenreCell.swift */; };
+		3E2CA4D92222513500537981 /* BrowseTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2CA4D82222513500537981 /* BrowseTableController.swift */; };
+		3E2CA4DB22225EDB00537981 /* BrowseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2CA4DA22225EDB00537981 /* BrowseCell.swift */; };
 		3EEECA2D2221CA3000AEA48F /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EEECA2C2221CA3000AEA48F /* Profile.storyboard */; };
 		3EEECA2F2221CED600AEA48F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEECA2E2221CED600AEA48F /* ProfileViewController.swift */; };
 		3EEECA312221E8FE00AEA48F /* FavoritesSmallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEECA302221E8FE00AEA48F /* FavoritesSmallCell.swift */; };
@@ -83,6 +89,12 @@
 		0BF1C41D221E79AF005B4185 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		0DD9876CAEE3F8069680EA9F /* Pods-QuickLitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickLitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QuickLitTests/Pods-QuickLitTests.release.xcconfig"; sourceTree = "<group>"; };
 		151D8B4A3B081DA049BB4201 /* Pods-QuickLitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickLitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QuickLitTests/Pods-QuickLitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		3E2CA4CE2222306000537981 /* quickTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = quickTabBarController.swift; sourceTree = "<group>"; };
+		3E2CA4D022223C3100537981 /* BrowseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseViewController.swift; sourceTree = "<group>"; };
+		3E2CA4D422223E0800537981 /* GenreTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreTableController.swift; sourceTree = "<group>"; };
+		3E2CA4D62222431D00537981 /* GenreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreCell.swift; sourceTree = "<group>"; };
+		3E2CA4D82222513500537981 /* BrowseTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseTableController.swift; sourceTree = "<group>"; };
+		3E2CA4DA22225EDB00537981 /* BrowseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseCell.swift; sourceTree = "<group>"; };
 		3EEECA2C2221CA3000AEA48F /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		3EEECA2E2221CED600AEA48F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		3EEECA302221E8FE00AEA48F /* FavoritesSmallCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesSmallCell.swift; sourceTree = "<group>"; };
@@ -162,6 +174,7 @@
 				0B060E48221E73FA008F3BBD /* Info.plist */,
 				0B060E40221E73F8008F3BBD /* QuickLit.xcdatamodeld */,
 				0BF1C41D221E79AF005B4185 /* GoogleService-Info.plist */,
+				3E2CA4CE2222306000537981 /* quickTabBarController.swift */,
 			);
 			path = QuickLit;
 			sourceTree = "<group>";
@@ -211,6 +224,11 @@
 			isa = PBXGroup;
 			children = (
 				0BB2B5B7222209BF00E86449 /* Browse.storyboard */,
+				3E2CA4D022223C3100537981 /* BrowseViewController.swift */,
+				3E2CA4D422223E0800537981 /* GenreTableController.swift */,
+				3E2CA4D62222431D00537981 /* GenreCell.swift */,
+				3E2CA4D82222513500537981 /* BrowseTableController.swift */,
+				3E2CA4DA22225EDB00537981 /* BrowseCell.swift */,
 			);
 			path = Browse;
 			sourceTree = "<group>";
@@ -470,14 +488,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E2CA4D92222513500537981 /* BrowseTableController.swift in Sources */,
 				0B8501AE2221CF7E00A9B85B /* CreateAccountViewController.swift in Sources */,
+				3E2CA4CF2222306000537981 /* quickTabBarController.swift in Sources */,
+				3E2CA4D522223E0800537981 /* GenreTableController.swift in Sources */,
 				0B8501B72221F96E00A9B85B /* SelectGenreViewController.swift in Sources */,
 				0B8501B52221E1CB00A9B85B /* WriteStoryTableViewController.swift in Sources */,
 				0B8501AC2221CA3F00A9B85B /* LoginViewController.swift in Sources */,
+				3E2CA4D72222431E00537981 /* GenreCell.swift in Sources */,
 				0B060E42221E73F8008F3BBD /* QuickLit.xcdatamodeld in Sources */,
 				0BB2B5C022220F9B00E86449 /* stories.swift in Sources */,
 				3EEECA2F2221CED600AEA48F /* ProfileViewController.swift in Sources */,
 				0BB2B5BC22220D6400E86449 /* AllPostsViewController.swift in Sources */,
+				3E2CA4D122223C3100537981 /* BrowseViewController.swift in Sources */,
+				3E2CA4DB22225EDB00537981 /* BrowseCell.swift in Sources */,
 				0B060E3A221E73F8008F3BBD /* AppDelegate.swift in Sources */,
 				0BB2B5C22222147B00E86449 /* StoryTableViewCell.swift in Sources */,
 				0B8501B02221D36300A9B85B /* PublicFunctions.swift in Sources */,
