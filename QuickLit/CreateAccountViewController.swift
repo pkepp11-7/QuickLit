@@ -12,6 +12,11 @@ import Firebase
 class CreateAccountViewController: UIViewController, UITextFieldDelegate {
 
     
+    var incompleteFieldsAlert: UIAlertController?
+    var errorAlert: UIAlertController?
+    
+    
+    
     var firebaseRef: DatabaseReference?
     @IBOutlet weak var username_textfield: UITextField!
     
@@ -39,6 +44,13 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         close_button.layer.cornerRadius = 10
         close_button.layer.borderWidth = 1
         close_button.layer.borderColor = UIColor.clear.cgColor
+        
+        
+        incompleteFieldsAlert = UIAlertController(title: "Please complete all fields", message: "", preferredStyle: .alert)
+        incompleteFieldsAlert!.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "done action"), style: .default, handler: nil))
+        
+        errorAlert = UIAlertController(title: "There was an error making the account, try again later", message: "", preferredStyle: .alert)
+        errorAlert!.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "done action"), style: .default, handler: nil))
         
     }
     
@@ -76,11 +88,18 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
                     
                 }
                 if(error != nil){
-                    print("there was an error")
-                    print(error.debugDescription)
+                    self.present(self.errorAlert!, animated: true)
                 }
             }
         }
+        else{
+            self.present(self.incompleteFieldsAlert!, animated: true)
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     /*

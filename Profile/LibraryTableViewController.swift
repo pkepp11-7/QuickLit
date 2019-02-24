@@ -9,12 +9,69 @@
 import UIKit
 import Firebase
 
-class LibraryTableViewController: UITableViewController {
+class LibraryTableViewController: UITableViewController, saveWasTappedDelegate{
+    
+    func saveStoryWasTapped(cell: StoryTableViewCell) {
+        
+        if let indexPath = tableView.indexPath(for: cell){
+            potentialIndexPath = indexPath
+            
+            
+            checkLibrary(completion: { foundID in
+                if(foundID){
+                    self.present(self.saveFailureAlert!, animated: true)
+                    
+                }
+                else{
+                    self.firebaseRef?.child("Users").child((Auth.auth().currentUser?.uid)!).child("library").child(self.libraryStories[indexPath.row].database_key).setValue(self.libraryStories[indexPath.row].title)
+                    self.present(self.saveSuccessAlert!, animated: true)
+                }
+                
+            })
+            foundIDLibrary = ""
+        }
+    }
+    
+    func checkLibrary(completion: @escaping (_ foundID: Bool) -> Void){
+        let libraryPath = firebaseRef?.child("Users").child((Auth.auth().currentUser?.uid)!).child("library")
+        libraryPath?.observe(.value, with: { snapshot in
+            if(snapshot.value is NSNull) {
+                completion(false)
+                
+            } else {
+                for story in snapshot.children{
+                    let storySnap = story as! DataSnapshot
+                    
+                    let databaseKey = storySnap.key
+                    
+                    if(databaseKey == self.libraryStories[(self.potentialIndexPath?.row)!].database_key){
+                        self.foundIDLibrary = databaseKey
+                    }
+                }
+                
+                
+                if(self.foundIDLibrary == ""){
+                    completion(false)
+                }
+                else{
+                    completion(true)
+                }
+            }
+        })
+    }
+    
+    var saveSuccessAlert: UIAlertController?
+    var saveFailureAlert: UIAlertController?
+    
+    var potentialIndexPath: IndexPath?
+    var foundIDLibrary = ""
     
     var libraryKeys: [String] = []
     var libraryStories: [story] = []
     var foundAuthor: String = ""
     var currentRow: Int = 0
+    
+    var firebaseRef: DatabaseReference?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +81,16 @@ class LibraryTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        firebaseRef = Database.database().reference()
+        
         getLibraryStories()
+        
+        saveSuccessAlert = UIAlertController(title: "Saved To Library!", message: "", preferredStyle: .alert)
+        saveSuccessAlert!.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "done action"), style: .default, handler: nil))
+        
+        saveFailureAlert = UIAlertController(title: "This story is already in your library", message: "", preferredStyle: .alert)
+        saveFailureAlert!.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "done action"), style: .default, handler: nil))
+        
         
     }
 
@@ -44,6 +110,8 @@ class LibraryTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "storyCell", for: indexPath) as! StoryTableViewCell
         currentRow = indexPath.row
+        
+        cell.delegate = self
         cell.genre_label.text = libraryStories[indexPath.row].genre
         cell.title_label.text = libraryStories[indexPath.row].title
         if(libraryStories[indexPath.row].likes != nil){

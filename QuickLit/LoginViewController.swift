@@ -11,6 +11,9 @@ import Firebase
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
 
+    var incompleteFieldsAlert: UIAlertController?
+    var wrongEmailOrPasswordAlert: UIAlertController?
+    
     @IBOutlet weak var email_textfield: UITextField!
     @IBOutlet weak var password_textfield: UITextField!
     
@@ -29,6 +32,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         log_in_button.layer.cornerRadius = 10
         log_in_button.layer.borderWidth = 1
         log_in_button.layer.borderColor = UIColor.clear.cgColor
+        
+        
+        incompleteFieldsAlert = UIAlertController(title: "Please complete all fields", message: "", preferredStyle: .alert)
+        incompleteFieldsAlert!.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "done action"), style: .default, handler: nil))
+        
+        wrongEmailOrPasswordAlert = UIAlertController(title: "You have entered the wrong email or password", message: "", preferredStyle: .alert)
+        wrongEmailOrPasswordAlert!.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "done action"), style: .default, handler: nil))
         
         
         
@@ -53,11 +63,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     self.password_textfield.text = ""
                 }
                 if(error != nil){
-                    print("there was an error")
-                    print(error.debugDescription)
+                    self.present(self.wrongEmailOrPasswordAlert!, animated: true)
                 }
                 
             }
+        }
+        else{
+            self.present(self.incompleteFieldsAlert!, animated: true)
         }
     }
     
