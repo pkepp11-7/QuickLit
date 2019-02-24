@@ -40,6 +40,7 @@
 		3E2CA4D92222513500537981 /* BrowseTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2CA4D82222513500537981 /* BrowseTableController.swift */; };
 		3E2CA4DB22225EDB00537981 /* BrowseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2CA4DA22225EDB00537981 /* BrowseCell.swift */; };
 		3E2CA4DD22228D6400537981 /* ProfileStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2CA4DC22228D6400537981 /* ProfileStats.swift */; };
+		3E2CA4DF2222A05400537981 /* ProfileStoryTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2CA4DE2222A05400537981 /* ProfileStoryTableController.swift */; };
 		3EEECA2D2221CA3000AEA48F /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EEECA2C2221CA3000AEA48F /* Profile.storyboard */; };
 		3EEECA2F2221CED600AEA48F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEECA2E2221CED600AEA48F /* ProfileViewController.swift */; };
 		3EEECA312221E8FE00AEA48F /* FavoritesSmallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEECA302221E8FE00AEA48F /* FavoritesSmallCell.swift */; };
@@ -105,6 +106,7 @@
 		3E2CA4D82222513500537981 /* BrowseTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseTableController.swift; sourceTree = "<group>"; };
 		3E2CA4DA22225EDB00537981 /* BrowseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseCell.swift; sourceTree = "<group>"; };
 		3E2CA4DC22228D6400537981 /* ProfileStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStats.swift; sourceTree = "<group>"; };
+		3E2CA4DE2222A05400537981 /* ProfileStoryTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStoryTableController.swift; sourceTree = "<group>"; };
 		3EEECA2C2221CA3000AEA48F /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		3EEECA2E2221CED600AEA48F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		3EEECA302221E8FE00AEA48F /* FavoritesSmallCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesSmallCell.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 				3E2CA4DC22228D6400537981 /* ProfileStats.swift */,
 				3EEECA2E2221CED600AEA48F /* ProfileViewController.swift */,
 				3EEECA302221E8FE00AEA48F /* FavoritesSmallCell.swift */,
+				3E2CA4DE2222A05400537981 /* ProfileStoryTableController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -521,6 +524,7 @@
 				3EEECA2F2221CED600AEA48F /* ProfileViewController.swift in Sources */,
 				0BB2B5BC22220D6400E86449 /* AllPostsViewController.swift in Sources */,
 				3E2CA4D122223C3100537981 /* BrowseViewController.swift in Sources */,
+				3E2CA4DF2222A05400537981 /* ProfileStoryTableController.swift in Sources */,
 				3E2CA4DB22225EDB00537981 /* BrowseCell.swift in Sources */,
 				0B060E3A221E73F8008F3BBD /* AppDelegate.swift in Sources */,
 				0BB2B5C22222147B00E86449 /* StoryTableViewCell.swift in Sources */,
