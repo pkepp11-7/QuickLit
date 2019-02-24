@@ -80,7 +80,9 @@
                                                     <rect key="frame" x="261" y="92" width="73" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                    <state key="normal" title="Save to Library"/>
+                                                    <state key="normal" title="Save to Library">
+                                                        <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
                                                     <connections>
                                                         <action selector="saveAction:" destination="N65-pC-WU5" eventType="touchUpInside" id="xeM-i6-RDk"/>
                                                     </connections>
