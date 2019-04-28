@@ -167,6 +167,7 @@
                     <navigationItem key="navigationItem" title="All Posts" id="MTw-qp-h9b"/>
                     <connections>
                         <outlet property="all_posts_tableview" destination="FWO-Fl-wc7" id="h31-FX-R1F"/>
+                        <outlet property="keywordSeachBar" destination="WLu-IV-RdE" id="68m-ua-LmN"/>
                         <segue destination="3Gx-u0-ZBG" kind="show" identifier="readStorySegue" id="lnQ-Ye-3hJ"/>
                     </connections>
                 </viewController>
