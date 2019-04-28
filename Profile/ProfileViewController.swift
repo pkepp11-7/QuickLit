@@ -48,7 +48,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var profileContent: UIScrollView!
    
     
-    
+    override func viewDidAppear(_ animated: Bool) {
+        print("performing data refresh")
+        refresh(sender: self)
+    }
     
     
     @IBAction func storiesCounterPressed(_ sender: UIButton) {
@@ -106,6 +109,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         refreshControl.endRefreshing()
         
     }
+    
     
     
     func updateLibrary() {

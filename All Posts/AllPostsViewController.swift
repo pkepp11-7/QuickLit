@@ -17,7 +17,8 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
     
     var potentialIndexPath: IndexPath?
     var foundIDLibrary = ""
-    
+    var usingFilter: Bool = false
+    var filteredStories: [story] = []
     
     func saveStoryWasTapped(cell: StoryTableViewCell) {
         if let indexPath = all_posts_tableview.indexPath(for: cell){
@@ -290,6 +291,37 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
         })
         
     }
+    
+    func getFilteredStories(keyword: String) {
+        if(keyword != "") {
+            usingFilter = true
+            filteredStories.removeAll()
+            for s in stories {
+                //set keyword and title as uppercase for comparisons
+                var uppercaseTarget = s.title.uppercased()
+                let uppercaseKeyword = keyword.uppercased()
+                var tokenizedStr = uppercaseTarget.components(separatedBy: uppercaseKeyword)
+                //if title contains the token
+                if(tokenizedStr.count > 1) {
+                    //add the story to the list
+                    filteredStories.append(s)
+                }
+                else {
+                    
+                    uppercaseTarget = s.story.uppercased()
+                    tokenizedStr = uppercaseTarget.components(separatedBy: uppercaseKeyword)
+                    if(tokenizedStr.count > 1) {
+                        filteredStories.append(s)
+                    }
+                }
+            }
+        }
+        else {
+            usingFilter = false
+        }
+    }
+    
+    
     
     // MARK: - Navigation
 
