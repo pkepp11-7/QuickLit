@@ -208,10 +208,14 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
                     
                     self.stories.append(newStory)
                     
-                    
                 }
             }
-            
+            if(self.usingFilter){
+                self.filteredStories.removeAll()
+                if let key = self.keywordSeachBar.text{
+                    self.getFilteredStories(keyword: key)
+                }
+            }
             self.all_posts_tableview.reloadData()
         })
     }
@@ -222,7 +226,9 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
         refreshControl.endRefreshing()
     }
     
-    
+    override func viewDidAppear(_ animated: Bool) {
+        refresh(sender: self)
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 130
@@ -355,6 +361,7 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
         if let text: String = searchBar.text {
             getFilteredStories(keyword: text)
         }
