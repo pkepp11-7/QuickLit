@@ -137,6 +137,7 @@ class ProfileStoryTableController: UITableViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        profileStories.removeAll()
         getProfileStories()
     }
 
