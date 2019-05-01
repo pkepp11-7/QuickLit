@@ -43,6 +43,7 @@ class ReadStoryViewController: UIViewController, UICollectionViewDelegate, UICol
     
     var found_poster = ""
     var foundIDLibrary = ""
+    var isLiked: Bool = false
     
     var refreshControl = UIRefreshControl()
     
@@ -96,6 +97,7 @@ class ReadStoryViewController: UIViewController, UICollectionViewDelegate, UICol
                 }
             }
         })
+        initLikes()
     }
     
     @objc func refresh(sender:AnyObject){
@@ -230,18 +232,31 @@ class ReadStoryViewController: UIViewController, UICollectionViewDelegate, UICol
     
     
     @IBAction func likeAction(_ sender: UIButton) {
+        if(isLiked) {
+            isLiked = false
+        }
+        else {
+            isLiked = true
+        }
         let likesCount = firebaseRef!.child("Stories").child((current_story?.database_key)!).child("likes")
         likesCount.runTransactionBlock( { (currentData: MutableData) -> TransactionResult in
-            
             var currentCount = currentData.value as? Int ?? 0
-            currentCount += 1
+            if(self.isLiked) {
+                currentCount += 1
+            }
+            else {
+                currentCount -= 1
+            }
             currentData.value = currentCount
             DispatchQueue.main.async {
                 self.total_likes_label.text = "\((currentData.value)!)"
+                if(self.isLiked) {
+                    self.like_button.setTitle("Unlike", for: .normal)
+                }
+                else {
+                    self.like_button.setTitle("Like", for: .normal)
+                }
             }
-            
-            
-            
             return TransactionResult.success(withValue: currentData)
         })
         
@@ -255,6 +270,26 @@ class ReadStoryViewController: UIViewController, UICollectionViewDelegate, UICol
             
             return TransactionResult.success(withValue: currentData)
         })
+        
+        if let userId = Auth.auth().currentUser?.uid {
+            let likesList = firebaseRef!.child("Users").child((userId)).child("likes_list")
+            likesList.runTransactionBlock( { (currentData: MutableData) -> TransactionResult in
+                
+                var list = currentData.value as? [String] ?? []
+                if let key = self.current_story?.database_key {
+                    if(self.isLiked) {
+                        list.append(key)
+                    }
+                    else {
+                        if let removeIndex = list.firstIndex(of: key) {
+                            list.remove(at: removeIndex)
+                        }
+                    }
+                }
+                currentData.value = list
+                return TransactionResult.success(withValue: currentData)
+            })
+        }
     }
     
     @IBAction func addToLibraryAction(_ sender: UIButton) {
@@ -355,7 +390,24 @@ class ReadStoryViewController: UIViewController, UICollectionViewDelegate, UICol
         
     }
  
-    
+    func initLikes() {
+        if let userId = Auth.auth().currentUser?.uid {
+            let likesPath = firebaseRef?.child("/Users/").child(userId).child("likes_list")
+            likesPath?.observe(.value, with: { snapshot in
+                if let likesList = snapshot.value as? [String] {
+                    for storyId in likesList {
+                        if(storyId == self.current_story?.database_key) {
+                            self.isLiked = true
+                            break
+                        }
+                    }
+                    if(!self.isLiked) {
+                        self.like_button.setTitle("Like", for: .normal)
+                    }
+                }
+            })
+        }
+    }
 
     
     // MARK: - Navigation

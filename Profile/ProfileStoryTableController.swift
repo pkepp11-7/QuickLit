@@ -136,6 +136,10 @@ class ProfileStoryTableController: UITableViewController {
         })
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        profileStories.removeAll()
+        getProfileStories()
+    }
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

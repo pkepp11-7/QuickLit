@@ -106,6 +106,9 @@ class LibraryTableViewController: UITableViewController, saveWasTappedDelegate{
         return libraryStories.count
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        getLibraryStories()
+    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "storyCell", for: indexPath) as! StoryTableViewCell

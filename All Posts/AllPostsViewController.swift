@@ -9,15 +9,17 @@
 import UIKit
 import Firebase
 
-class AllPostsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, saveWasTappedDelegate {
+class AllPostsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, saveWasTappedDelegate {
     
+    @IBOutlet weak var keywordSeachBar: UISearchBar!
     
     var saveSuccessAlert: UIAlertController?
     var saveFailureAlert: UIAlertController?
     
     var potentialIndexPath: IndexPath?
     var foundIDLibrary = ""
-    
+    var usingFilter: Bool = false
+    var filteredStories: [story] = []
     
     func saveStoryWasTapped(cell: StoryTableViewCell) {
         if let indexPath = all_posts_tableview.indexPath(for: cell){
@@ -30,7 +32,11 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
                     
                 }
                 else{
-                    self.firebaseRef?.child("Users").child((Auth.auth().currentUser?.uid)!).child("library").child(self.stories[indexPath.row].database_key).setValue(self.stories[indexPath.row].title)
+                    if(!self.usingFilter){ self.firebaseRef?.child("Users").child((Auth.auth().currentUser?.uid)!).child("library").child(self.stories[indexPath.row].database_key).setValue(self.stories[indexPath.row].title)
+                    }
+                    else {
+                        self.firebaseRef?.child("Users").child((Auth.auth().currentUser?.uid)!).child("library").child(self.filteredStories[indexPath.row].database_key).setValue(self.filteredStories[indexPath.row].title)
+                    }
                     self.present(self.saveSuccessAlert!, animated: true)
                 }
             
@@ -51,7 +57,10 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
                     
                     let databaseKey = storySnap.key
                     
-                    if(databaseKey == self.stories[(self.potentialIndexPath?.row)!].database_key){
+                    if(!self.usingFilter && databaseKey == self.stories[(self.potentialIndexPath?.row)!].database_key){
+                        self.foundIDLibrary = databaseKey
+                    }
+                    if(self.usingFilter && databaseKey == self.filteredStories[(self.potentialIndexPath?.row)!].database_key){
                         self.foundIDLibrary = databaseKey
                     }
                 }
@@ -94,7 +103,7 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
         
         all_posts_tableview.delegate = self
         all_posts_tableview.dataSource = self
-        
+        keywordSeachBar.delegate = self
         
         getFirebaseStories()
         
@@ -199,10 +208,14 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
                     
                     self.stories.append(newStory)
                     
-                    
                 }
             }
-            
+            if(self.usingFilter){
+                self.filteredStories.removeAll()
+                if let key = self.keywordSeachBar.text{
+                    self.getFilteredStories(keyword: key)
+                }
+            }
             self.all_posts_tableview.reloadData()
         })
     }
@@ -213,14 +226,21 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
         refreshControl.endRefreshing()
     }
     
-    
+    override func viewDidAppear(_ animated: Bool) {
+        refresh(sender: self)
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 130
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return stories.count
+        if(!usingFilter) {
+            return stories.count
+        }
+        else {
+            return filteredStories.count
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -233,19 +253,33 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "storyCell", for: indexPath) as! StoryTableViewCell
         cell.delegate = self
+        var components: [String]
         
         currentRow = indexPath.row
-        
-        cell.genre_label.text = stories[indexPath.row].genre
-        cell.title_label.text = stories[indexPath.row].title
-        if(stories[indexPath.row].likes != nil){
-            cell.likes_label.text = "\((stories[indexPath.row].likes)!)\nLikes"
+        if(!usingFilter) {
+            cell.genre_label.text = stories[indexPath.row].genre
+            cell.title_label.text = stories[indexPath.row].title
+            if(stories[indexPath.row].likes != nil){
+                cell.likes_label.text = "\((stories[indexPath.row].likes)!)\nLikes"
+            }
+            else{
+                cell.likes_label.text = "0\nLikes"
+            }
+            
+            components = stories[indexPath.row].story.components(separatedBy: .whitespacesAndNewlines)
         }
-        else{
-            cell.likes_label.text = "0\nLikes"
+        else {
+            cell.genre_label.text = filteredStories[indexPath.row].genre
+            cell.title_label.text = filteredStories[indexPath.row].title
+            if(filteredStories[indexPath.row].likes != nil){
+                cell.likes_label.text = "\((filteredStories[indexPath.row].likes)!)\nLikes"
+            }
+            else{
+                cell.likes_label.text = "0\nLikes"
+            }
+            
+            components = filteredStories[indexPath.row].story.components(separatedBy: .whitespacesAndNewlines)
         }
-        
-        let components = stories[indexPath.row].story.components(separatedBy: .whitespacesAndNewlines)
         let words = components.filter { !$0.isEmpty }
         
         if(words.count < 3000){
@@ -272,7 +306,13 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     func checkUserName(completion: @escaping (_ foundUserName: Bool) -> Void){
-        let postersPath = firebaseRef?.child("Users").child(stories[currentRow].author).child("username")
+        var postersPath: DatabaseReference?
+        if(!usingFilter) {
+            postersPath = firebaseRef?.child("Users").child(stories[currentRow].author).child("username")
+        }
+        else {
+            postersPath = firebaseRef?.child("Users").child(filteredStories[currentRow].author).child("username")
+        }
         postersPath?.observe(.value, with: { snapshot in
             if(snapshot.value is NSNull) {
             } else {
@@ -291,14 +331,60 @@ class AllPostsViewController: UIViewController, UITableViewDelegate, UITableView
         
     }
     
+    func getFilteredStories(keyword: String) {
+        if(keyword != "") {
+            usingFilter = true
+            filteredStories.removeAll()
+            for s in stories {
+                //set keyword and title as uppercase for comparisons
+                var uppercaseTarget = s.title.uppercased()
+                let uppercaseKeyword = keyword.uppercased()
+                var tokenizedStr = uppercaseTarget.components(separatedBy: uppercaseKeyword)
+                //if title contains the token
+                if(tokenizedStr.count > 1) {
+                    //add the story to the list
+                    filteredStories.append(s)
+                }
+                else {
+                    //try looking for the keyword in the story
+                    uppercaseTarget = s.story.uppercased()
+                    tokenizedStr = uppercaseTarget.components(separatedBy: uppercaseKeyword)
+                    if(tokenizedStr.count > 1) {
+                        filteredStories.append(s)
+                    }
+                }
+            }
+        }
+        else {
+            usingFilter = false
+        }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        if let text: String = searchBar.text {
+            getFilteredStories(keyword: text)
+        }
+        else {
+            getFilteredStories(keyword: "")
+        }
+        self.all_posts_tableview.reloadData()
+    }
+    
+    
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "readStorySegue"){
             let vc = segue.destination as! ReadStoryViewController
-            
-            vc.current_story = stories[selectedRow]
+            if(!usingFilter){
+                vc.current_story = stories[selectedRow]
+            }
+            else {
+                vc.current_story = filteredStories[selectedRow]
+            }
         }
     }
     
